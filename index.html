@@ -1,33 +1,52 @@
 <!doctype html>
-<html lang="fr">
+<html lang="fr-CA">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#0b0f1a" />
-  <meta name="description" content="Une page d’accueil qui claque — performance, style, partage." />
+  <meta name="theme-color" content="#070A12" />
+  <meta name="description" content="JC Gagnon Informatique — Support TI, optimisation, sécurité, Windows, réseaux et sites web. Simple. Fiable. Efficace. Montréal & Joliette." />
 
-  <!-- Open Graph / social preview -->
-  <meta property="og:title" content="SudoJC Gagnon — ⚡️ Le lancement" />
-  <meta property="og:description" content="Une expérience web qui accroche. Clique, partage, fais monter le buzz." />
+  <!-- Social / SEO -->
+  <meta property="og:title" content="JC Gagnon Informatique — Simple. Fiable. Efficace." />
+  <meta property="og:description" content="Votre expert informatique à Montréal & Joliette. Support, réparation, optimisation, sécurité, réseaux et sites web." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://sudojcgagnon.github.io/" />
+  <!-- Optionnel : ajoute /og.png (1200x630) -->
+  <!-- <meta property="og:image" content="https://sudojcgagnon.github.io/og.png" /> -->
 
-  <title>SudoJC — Lancement</title>
+  <title>JC Gagnon Informatique — Calibre mondial</title>
 
   <style>
     :root{
-      --bg:#070a12;
-      --card: rgba(255,255,255,.06);
+      --bg0:#070A12;
+      --bg1:#0A1225;
+      --card: rgba(255,255,255,.07);
       --card2: rgba(255,255,255,.10);
-      --text: rgba(255,255,255,.92);
-      --muted: rgba(255,255,255,.68);
       --line: rgba(255,255,255,.12);
-      --a:#7c3aed;   /* violet */
-      --b:#06b6d4;   /* cyan */
-      --c:#22c55e;   /* vert */
-      --d:#f59e0b;   /* ambre */
-      --shadow: 0 20px 80px rgba(0,0,0,.55);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+
+      --a:#7C3AED; /* violet */
+      --b:#06B6D4; /* cyan */
+      --c:#22C55E; /* vert */
+      --d:#F59E0B; /* ambre */
+
+      --shadow: 0 22px 90px rgba(0,0,0,.55);
       --radius: 22px;
+
+      --max: 1140px;
+    }
+
+    /* Light mode (optionnel) */
+    [data-theme="light"]{
+      --bg0:#F7F8FC;
+      --bg1:#FFFFFF;
+      --card: rgba(0,0,0,.04);
+      --card2: rgba(0,0,0,.06);
+      --line: rgba(0,0,0,.10);
+      --text: rgba(10,12,20,.92);
+      --muted: rgba(10,12,20,.66);
+      --shadow: 0 18px 70px rgba(10,12,20,.12);
     }
 
     *{box-sizing:border-box}
@@ -35,97 +54,141 @@
     body{
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      background: radial-gradient(1200px 800px at 20% 10%, rgba(124,58,237,.18), transparent 60%),
-                  radial-gradient(1000px 700px at 80% 30%, rgba(6,182,212,.16), transparent 55%),
-                  radial-gradient(900px 700px at 55% 90%, rgba(34,197,94,.12), transparent 55%),
-                  var(--bg);
       color:var(--text);
+      background:
+        radial-gradient(1200px 800px at 18% 12%, color-mix(in srgb, var(--a) 24%, transparent), transparent 60%),
+        radial-gradient(1000px 700px at 82% 28%, color-mix(in srgb, var(--b) 20%, transparent), transparent 55%),
+        radial-gradient(900px 700px at 55% 92%, color-mix(in srgb, var(--c) 18%, transparent), transparent 55%),
+        linear-gradient(180deg, var(--bg0), var(--bg1));
       overflow-x:hidden;
     }
 
-    /* Aurora layer */
+    a{color:inherit}
+    .wrap{max-width: var(--max); margin:0 auto; padding: 0 18px;}
+    .skip{
+      position:absolute; left:-999px; top:auto; width:1px; height:1px; overflow:hidden;
+    }
+    .skip:focus{left:18px; top:18px; width:auto; height:auto; padding:10px 12px; border-radius:14px; background:var(--card2); border:1px solid var(--line); z-index:9999}
+
+    /* Aurora & grain */
     .aurora{
       position:fixed; inset:-20%;
       background:
-        radial-gradient(closest-side, rgba(124,58,237,.25), transparent 60%),
-        radial-gradient(closest-side, rgba(6,182,212,.22), transparent 60%),
-        radial-gradient(closest-side, rgba(34,197,94,.20), transparent 60%),
-        radial-gradient(closest-side, rgba(245,158,11,.14), transparent 60%);
-      filter: blur(50px) saturate(140%);
+        radial-gradient(closest-side, color-mix(in srgb, var(--a) 26%, transparent), transparent 60%),
+        radial-gradient(closest-side, color-mix(in srgb, var(--b) 22%, transparent), transparent 60%),
+        radial-gradient(closest-side, color-mix(in srgb, var(--c) 18%, transparent), transparent 60%),
+        radial-gradient(closest-side, color-mix(in srgb, var(--d) 14%, transparent), transparent 60%);
+      filter: blur(55px) saturate(130%);
       opacity:.85;
-      animation: float 14s ease-in-out infinite alternate;
       pointer-events:none;
       transform: translate3d(0,0,0);
+      animation: float 14s ease-in-out infinite alternate;
     }
     @keyframes float{
-      0%{transform: translate3d(-3%, -2%, 0) rotate(0.3deg) scale(1.02)}
-      100%{transform: translate3d(3%, 2%, 0) rotate(-0.3deg) scale(1.04)}
+      0%{transform: translate3d(-3%, -2%, 0) rotate(0.25deg) scale(1.02)}
+      100%{transform: translate3d(3%, 2%, 0) rotate(-0.25deg) scale(1.04)}
     }
-
-    /* Grain */
     .grain{
       position:fixed; inset:0;
       background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E");
-      mix-blend-mode:overlay;
-      opacity:.22;
+      mix-blend-mode: overlay;
+      opacity:.20;
       pointer-events:none;
     }
 
+    /* Header */
     header{
-      position:sticky; top:0; z-index:10;
+      position:sticky; top:0; z-index:50;
       backdrop-filter: blur(14px);
-      background: linear-gradient(to bottom, rgba(7,10,18,.72), rgba(7,10,18,.25));
-      border-bottom:1px solid rgba(255,255,255,.06);
+      background: linear-gradient(to bottom, color-mix(in srgb, var(--bg0) 78%, transparent), transparent);
+      border-bottom:1px solid color-mix(in srgb, var(--line) 70%, transparent);
     }
     .nav{
-      max-width:1100px; margin:0 auto;
-      padding:16px 18px;
       display:flex; align-items:center; justify-content:space-between; gap:14px;
+      padding: 14px 0;
     }
     .brand{
-      display:flex; align-items:center; gap:10px; font-weight:700; letter-spacing:.2px;
+      display:flex; align-items:center; gap:10px;
+      font-weight:820; letter-spacing:-.02em;
+      text-decoration:none;
     }
-    .dot{
-      width:12px; height:12px; border-radius:99px;
+    .mark{
+      width:12px; height:12px; border-radius:999px;
       background: conic-gradient(from 180deg, var(--a), var(--b), var(--c), var(--d), var(--a));
-      box-shadow: 0 0 0 6px rgba(255,255,255,.04);
+      box-shadow: 0 0 0 6px color-mix(in srgb, var(--card) 100%, transparent);
     }
-    .pill{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:8px 12px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.06);
-      border-radius:999px;
+    .navlinks{
+      display:flex; align-items:center; gap:12px; flex-wrap:wrap;
       color:var(--muted);
+      font-size:14px;
+    }
+    .navlinks a{
+      text-decoration:none;
+      padding:8px 10px;
+      border-radius:12px;
+      border:1px solid transparent;
+    }
+    .navlinks a:hover{
+      border-color: color-mix(in srgb, var(--line) 80%, transparent);
+      background: var(--card);
+      color: var(--text);
+    }
+
+    .pill{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid color-mix(in srgb, var(--line) 80%, transparent);
+      background: var(--card);
+      color: var(--muted);
       font-size:13px;
       user-select:none;
     }
     .live{
-      width:8px; height:8px; border-radius:99px;
-      background:#22c55e;
-      box-shadow:0 0 0 0 rgba(34,197,94,.55);
-      animation:pulse 1.4s infinite;
+      width:8px; height:8px; border-radius:999px;
+      background: var(--c);
+      box-shadow: 0 0 0 0 color-mix(in srgb, var(--c) 55%, transparent);
+      animation: pulse 1.4s infinite;
     }
     @keyframes pulse{
-      0%{box-shadow:0 0 0 0 rgba(34,197,94,.55)}
-      70%{box-shadow:0 0 0 10px rgba(34,197,94,0)}
-      100%{box-shadow:0 0 0 0 rgba(34,197,94,0)}
+      0%{box-shadow:0 0 0 0 color-mix(in srgb, var(--c) 55%, transparent)}
+      70%{box-shadow:0 0 0 10px color-mix(in srgb, var(--c) 0%, transparent)}
+      100%{box-shadow:0 0 0 0 color-mix(in srgb, var(--c) 0%, transparent)}
     }
 
-    main{max-width:1100px; margin:0 auto; padding:34px 18px 80px}
-    .hero{
-      display:grid;
-      grid-template-columns: 1.15fr .85fr;
-      gap:22px;
-      align-items:stretch;
+    .btn{
+      border:1px solid color-mix(in srgb, var(--line) 85%, transparent);
+      background: var(--card);
+      color:var(--text);
+      padding:10px 12px;
+      border-radius:14px;
+      font-weight:750;
+      font-size:14px;
+      cursor:pointer;
+      text-decoration:none;
+      display:inline-flex; align-items:center; gap:10px;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+      white-space:nowrap;
     }
-    @media (max-width: 900px){
-      .hero{grid-template-columns:1fr}
+    .btn:hover{transform: translateY(-1px); background: var(--card2); border-color: color-mix(in srgb, var(--line) 100%, transparent)}
+    .btn.primary{
+      background: linear-gradient(135deg,
+        color-mix(in srgb, var(--a) 60%, transparent),
+        color-mix(in srgb, var(--b) 40%, transparent));
+      border-color: color-mix(in srgb, var(--line) 100%, transparent);
+    }
+    .btn.primary:hover{
+      background: linear-gradient(135deg,
+        color-mix(in srgb, var(--a) 70%, transparent),
+        color-mix(in srgb, var(--b) 50%, transparent));
     }
 
+    /* Layout */
+    main{padding: 26px 0 84px}
+    section{margin-top: 18px}
     .card{
-      border:1px solid rgba(255,255,255,.10);
-      background: linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      border:1px solid color-mix(in srgb, var(--line) 80%, transparent);
+      background: linear-gradient(135deg, var(--card2), var(--card));
       border-radius: var(--radius);
       box-shadow: var(--shadow);
       overflow:hidden;
@@ -134,298 +197,525 @@
     .card::before{
       content:"";
       position:absolute; inset:-2px;
-      background: radial-gradient(600px 300px at 20% 10%, rgba(124,58,237,.22), transparent 55%),
-                  radial-gradient(500px 260px at 90% 40%, rgba(6,182,212,.18), transparent 55%),
-                  radial-gradient(500px 260px at 50% 95%, rgba(34,197,94,.14), transparent 55%);
-      opacity:.8;
-      pointer-events:none;
+      background:
+        radial-gradient(600px 280px at 20% 10%, color-mix(in srgb, var(--a) 22%, transparent), transparent 55%),
+        radial-gradient(520px 260px at 90% 40%, color-mix(in srgb, var(--b) 18%, transparent), transparent 55%),
+        radial-gradient(520px 260px at 50% 95%, color-mix(in srgb, var(--c) 14%, transparent), transparent 55%);
+      opacity:.85; pointer-events:none;
     }
 
-    .hero-left{padding:28px 26px}
+    /* Hero */
+    .hero{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 18px;
+      align-items:stretch;
+    }
+    @media (max-width: 940px){ .hero{grid-template-columns:1fr} }
+
+    .hero-left{padding: 28px 26px; position:relative; z-index:1}
     .kicker{
       display:inline-flex; align-items:center; gap:10px;
       padding:10px 12px;
       border-radius:999px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(0,0,0,.25);
-      color:var(--muted);
-      font-size:13px;
-      position:relative; z-index:1;
+      border:1px solid color-mix(in srgb, var(--line) 80%, transparent);
+      background: color-mix(in srgb, var(--bg0) 40%, transparent);
+      color: var(--muted);
+      font-size: 13px;
     }
-    .spark{filter: drop-shadow(0 10px 18px rgba(124,58,237,.35));}
     h1{
-      margin:16px 0 10px;
-      font-size: clamp(36px, 5vw, 56px);
-      line-height:1.03;
-      letter-spacing:-.02em;
-      position:relative; z-index:1;
+      margin: 16px 0 10px;
+      font-size: clamp(34px, 4.8vw, 56px);
+      line-height:1.02;
+      letter-spacing:-.03em;
     }
     .gradient{
-      background: linear-gradient(90deg, #fff, rgba(255,255,255,.88), #a5b4fc, #67e8f9, #86efac);
+      background: linear-gradient(90deg, #fff, color-mix(in srgb, #fff 82%, transparent), #a5b4fc, #67e8f9, #86efac);
       -webkit-background-clip:text;
       background-clip:text;
       color:transparent;
     }
     .lead{
       margin:0;
-      color:var(--muted);
+      color: var(--muted);
       font-size: clamp(15px, 2.2vw, 18px);
-      line-height:1.6;
-      max-width: 60ch;
-      position:relative; z-index:1;
+      line-height:1.65;
+      max-width: 64ch;
     }
-
     .actions{
+      margin-top: 18px;
       display:flex; flex-wrap:wrap; gap:10px;
-      margin-top:18px;
-      position:relative; z-index:1;
     }
-    button, a.btn{
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.08);
-      color:var(--text);
-      padding:12px 14px;
-      border-radius: 14px;
-      font-weight:650;
-      font-size:14px;
-      cursor:pointer;
-      text-decoration:none;
-      transition: transform .12s ease, background .12s ease, border-color .12s ease;
-      display:inline-flex; align-items:center; gap:10px;
+    .meta{
+      margin-top: 12px;
+      display:flex; flex-wrap:wrap; gap:10px;
+      color: color-mix(in srgb, var(--muted) 90%, transparent);
+      font-size: 13px;
     }
-    button:hover, a.btn:hover{transform: translateY(-1px); background: rgba(255,255,255,.11); border-color: rgba(255,255,255,.18)}
-    button.primary, a.btn.primary{
-      background: linear-gradient(135deg, rgba(124,58,237,.55), rgba(6,182,212,.35));
-      border-color: rgba(255,255,255,.18);
+    .meta .chip{
+      padding:8px 10px;
+      border-radius: 999px;
+      border:1px solid color-mix(in srgb, var(--line) 70%, transparent);
+      background: var(--card);
     }
-    button.primary:hover, a.btn.primary:hover{background: linear-gradient(135deg, rgba(124,58,237,.66), rgba(6,182,212,.42));}
-    .tiny{font-size:12px; font-weight:600; color:rgba(255,255,255,.75)}
-    .note{margin-top:10px; color:rgba(255,255,255,.55); font-size:12.5px; position:relative; z-index:1}
 
-    .hero-right{
-      padding:18px;
-      display:grid;
-      grid-template-rows: auto 1fr auto;
-      gap:12px;
-    }
+    /* Right panel */
+    .hero-right{padding: 18px; display:grid; gap:12px; position:relative; z-index:1}
     .stat{
-      padding:14px 14px;
+      border:1px solid color-mix(in srgb, var(--line) 70%, transparent);
+      background: color-mix(in srgb, var(--bg0) 18%, transparent);
       border-radius: 18px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(0,0,0,.18);
-      position:relative; z-index:1;
+      padding:14px;
     }
-    .stat .label{color:rgba(255,255,255,.62); font-size:12px}
-    .stat .value{font-size:22px; font-weight:800; letter-spacing:-.02em; margin-top:6px}
+    .label{color: color-mix(in srgb, var(--muted) 90%, transparent); font-size: 12px}
+    .value{margin-top: 6px; font-size: 20px; font-weight: 900; letter-spacing:-.02em}
+    .small{font-size:12.5px; color: color-mix(in srgb, var(--muted) 92%, transparent); line-height:1.55}
     .statgrid{display:grid; grid-template-columns:1fr 1fr; gap:12px}
-    .progress{
-      height:10px; border-radius:999px;
-      background: rgba(255,255,255,.08);
-      overflow:hidden;
-      margin-top:10px;
-    }
-    .bar{
-      height:100%;
-      width: 0%;
-      background: linear-gradient(90deg, rgba(124,58,237,.9), rgba(6,182,212,.9), rgba(34,197,94,.9));
-      border-radius:999px;
-      transition: width .7s ease;
-    }
+    @media (max-width: 520px){ .statgrid{grid-template-columns:1fr} }
 
-    .grid{
-      margin-top:18px;
+    .progress{height: 10px; border-radius: 999px; background: color-mix(in srgb, var(--line) 30%, transparent); overflow:hidden; margin-top: 10px}
+    .bar{height:100%; width: 0%; border-radius:999px; background: linear-gradient(90deg, var(--a), var(--b), var(--c)); transition: width .7s ease}
+
+    /* Grids */
+    .grid3{
       display:grid;
       grid-template-columns: repeat(3, 1fr);
-      gap:12px;
+      gap: 12px;
+      margin-top: 12px;
     }
-    @media (max-width: 900px){ .grid{grid-template-columns:1fr} }
+    @media (max-width: 940px){ .grid3{grid-template-columns:1fr} }
+
     .tile{
-      padding:16px;
-      border-radius:18px;
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(0,0,0,.18);
+      border:1px solid color-mix(in srgb, var(--line) 70%, transparent);
+      background: color-mix(in srgb, var(--bg0) 18%, transparent);
+      border-radius: 18px;
+      padding: 16px;
       position:relative;
       overflow:hidden;
     }
-    .tile h3{margin:2px 0 6px; font-size:15px}
-    .tile p{margin:0; color:rgba(255,255,255,.66); font-size:13px; line-height:1.55}
+    .tile h3{margin: 8px 0 6px; font-size: 15px}
+    .tile p{margin:0; color: var(--muted); font-size: 13px; line-height:1.6}
     .tag{
       display:inline-flex; align-items:center;
       padding:6px 10px;
       border-radius:999px;
-      font-size:12px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.06);
-      color:rgba(255,255,255,.75);
+      font-size: 12px;
+      border:1px solid color-mix(in srgb, var(--line) 70%, transparent);
+      background: var(--card);
+      color: color-mix(in srgb, var(--text) 85%, transparent);
     }
 
+    /* Services & Pricing */
+    .split{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 18px;
+      align-items:start;
+    }
+    @media (max-width: 940px){ .split{grid-template-columns:1fr} }
+
+    .block{padding: 22px; position:relative; z-index:1}
+    .h2{
+      margin:0 0 8px;
+      font-size: 22px;
+      letter-spacing:-.02em;
+    }
+    .sub{margin:0 0 14px; color: var(--muted); line-height:1.6}
+    .list{
+      display:grid; gap:10px;
+      margin-top: 14px;
+    }
+    .row{
+      display:flex; align-items:flex-start; justify-content:space-between; gap:14px;
+      padding:12px;
+      border-radius: 16px;
+      border:1px solid color-mix(in srgb, var(--line) 65%, transparent);
+      background: color-mix(in srgb, var(--bg0) 16%, transparent);
+    }
+    .row strong{display:block; font-size:14px}
+    .row span{display:block; color: var(--muted); font-size: 12.5px; margin-top: 4px; line-height:1.45}
+    .price{
+      font-weight: 950;
+      letter-spacing:-.02em;
+      white-space:nowrap;
+    }
+
+    /* FAQ */
+    details{
+      border:1px solid color-mix(in srgb, var(--line) 65%, transparent);
+      background: color-mix(in srgb, var(--bg0) 16%, transparent);
+      border-radius: 16px;
+      padding: 12px 14px;
+    }
+    summary{
+      cursor:pointer;
+      font-weight: 820;
+      list-style:none;
+    }
+    summary::-webkit-details-marker{display:none}
+    details p{
+      margin: 10px 0 0;
+      color: var(--muted);
+      line-height:1.65;
+      font-size: 13.5px;
+    }
+
+    /* Footer */
     footer{
-      margin-top:28px;
-      color:rgba(255,255,255,.55);
-      font-size:12.5px;
+      margin-top: 22px;
+      color: color-mix(in srgb, var(--muted) 90%, transparent);
+      font-size: 12.5px;
       display:flex;
       justify-content:space-between;
       gap:12px;
       flex-wrap:wrap;
+      padding-bottom: 10px;
     }
+
+    /* Toast */
     .toast{
       position:fixed; left:50%; bottom:22px; transform:translateX(-50%);
       padding:12px 14px;
       border-radius: 14px;
-      border:1px solid rgba(255,255,255,.14);
-      background: rgba(10,12,20,.65);
+      border:1px solid color-mix(in srgb, var(--line) 90%, transparent);
+      background: color-mix(in srgb, var(--bg0) 65%, transparent);
       backdrop-filter: blur(10px);
-      color:rgba(255,255,255,.86);
-      box-shadow: 0 18px 60px rgba(0,0,0,.55);
+      color: color-mix(in srgb, var(--text) 92%, transparent);
+      box-shadow: 0 18px 60px rgba(0,0,0,.45);
       opacity:0; pointer-events:none;
       transition: opacity .18s ease, transform .18s ease;
-      z-index:50;
+      z-index:999;
     }
     .toast.show{opacity:1; transform:translateX(-50%) translateY(-4px)}
-    canvas#fx{
-      position:fixed; inset:0;
-      pointer-events:none;
-      z-index:40;
-    }
-    .kbd{
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      font-size:12px;
-      padding:2px 8px;
-      border-radius:10px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.06);
-      color:rgba(255,255,255,.75);
-      margin-left:6px;
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce){
+      .aurora{animation:none}
+      .btn{transition:none}
+      .bar{transition:none}
     }
   </style>
 </head>
 
 <body>
+  <a class="skip" href="#contenu">Aller au contenu</a>
   <div class="aurora" aria-hidden="true"></div>
   <div class="grain" aria-hidden="true"></div>
-  <canvas id="fx"></canvas>
 
   <header>
-    <div class="nav">
-      <div class="brand">
-        <span class="dot" aria-hidden="true"></span>
-        <span>SudoJC</span>
-        <span class="pill"><span class="live"></span> Live</span>
+    <div class="wrap">
+      <div class="nav">
+        <a class="brand" href="#top" aria-label="JC Gagnon Informatique">
+          <span class="mark" aria-hidden="true"></span>
+          <span>JC Gagnon Informatique</span>
+        </a>
+
+        <nav class="navlinks" aria-label="Navigation">
+          <a href="#services">Services</a>
+          <a href="#methode">Méthode</a>
+          <a href="#tarifs">Tarifs</a>
+          <a href="#faq">FAQ</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <div style="display:flex; gap:10px; align-items:center">
+          <span class="pill"><span class="live"></span> Sur rendez-vous</span>
+          <button class="btn" id="themeBtn" type="button" aria-label="Changer le thème">🌓</button>
+          <a class="btn primary" href="#contact">Demander une soumission</a>
+        </div>
       </div>
-      <div class="pill">Astuce : appuie sur <span class="kbd">B</span> pour le “buzz”</div>
     </div>
   </header>
 
-  <main>
-    <section class="hero">
-      <div class="card hero-left">
-        <div class="kicker">
-          <span class="spark">⚡</span>
-          <span>Nouvelle expérience • Ultra rapide • Partageable</span>
-        </div>
+  <main id="contenu">
+    <div class="wrap">
+      <!-- HERO -->
+      <section class="hero" id="top">
+        <div class="card">
+          <div class="hero-left">
+            <div class="kicker">⚡ Simple • Fiable • Efficace — Support TI & solutions web</div>
 
-        <h1><span class="gradient">Une page qui attire l’attention.</span><br/>Et qui donne envie de cliquer.</h1>
+            <h1><span class="gradient">Un partenaire informatique</span><br/>qui règle le vrai problème.</h1>
 
-        <p class="lead">
-          Bienvenue sur <strong>sudojcgagnon.github.io</strong>. Ici, on lance quelque chose de simple mais mémorable :
-          un design qui claque, une interaction qui surprend, et un lien facile à partager.
-        </p>
+            <p class="lead">
+              Depuis 2013, j’accompagne particuliers, travailleurs autonomes et PME à Montréal et dans la région de Joliette.
+              Mon objectif : vous faire gagner du temps, sécuriser vos outils et livrer des résultats nets — sans jargon, sans surprises.
+            </p>
 
-        <div class="actions">
-          <button class="primary" id="btnBuzz">Lancer le buzz ✨</button>
-          <button id="btnCopy">Copier le lien</button>
-          <button id="btnShare">Partager</button>
-          <a class="btn" href="#features">Voir les features</a>
-        </div>
+            <div class="actions">
+              <a class="btn primary" href="tel:+15148340083" aria-label="Appeler JC Gagnon au 514 834-0083">📞 Appeler (514) 834-0083</a>
+              <button class="btn" id="copyBtn" type="button">📋 Copier les infos</button>
+              <a class="btn" href="#services">Explorer les services →</a>
+            </div>
 
-        <div class="note">💡 Pro-tip : “Lancer le buzz” déclenche un effet confetti + boost la jauge.</div>
-      </div>
-
-      <div class="card hero-right">
-        <div class="stat">
-          <div class="label">Niveau de buzz (en direct)</div>
-          <div class="value"><span id="buzz">42</span>%</div>
-          <div class="progress"><div class="bar" id="bar"></div></div>
-        </div>
-
-        <div class="statgrid">
-          <div class="stat">
-            <div class="label">Clics sur “Buzz”</div>
-            <div class="value" id="clicks">0</div>
-          </div>
-          <div class="stat">
-            <div class="label">Temps sur la page</div>
-            <div class="value"><span id="time">0</span>s</div>
+            <div class="meta">
+              <span class="chip">✅ Diagnostic clair</span>
+              <span class="chip">✅ Approche humaine</span>
+              <span class="chip">✅ Sur place ou à distance</span>
+              <span class="chip">✅ Tarification transparente</span>
+            </div>
           </div>
         </div>
 
-        <div class="stat">
-          <div class="label">Phrase partageable</div>
-          <div class="value" style="font-size:16px; line-height:1.25; font-weight:750">
-            “On vient de lancer un truc qui claque — viens voir.”
+        <div class="card">
+          <div class="hero-right">
+            <div class="stat">
+              <div class="label">Niveau de confiance (ce qu’on vise)</div>
+              <div class="value"><span id="trust">0</span>%</div>
+              <div class="progress"><div class="bar" id="bar"></div></div>
+              <div class="small">Objectif : une solution propre, expliquée, vérifiable — comme une équipe TI interne, mais plus agile.</div>
+            </div>
+
+            <div class="statgrid">
+              <div class="stat">
+                <div class="label">Intervention</div>
+                <div class="value">Rapide</div>
+                <div class="small">Priorité : remettre en marche sans bricolage.</div>
+              </div>
+              <div class="stat">
+                <div class="label">Qualité</div>
+                <div class="value">Premium</div>
+                <div class="small">Finitions pro, sécurité, performance.</div>
+              </div>
+            </div>
+
+            <div class="stat">
+              <div class="label">Message partageable</div>
+              <div class="value" style="font-size:15.5px; line-height:1.2; font-weight:900">
+                “Besoin d’un TI fiable? J’ai trouvé quelqu’un de solide.”
+              </div>
+              <div class="small">Le bouton “Copier les infos” prépare tout pour SMS / courriel.</div>
+            </div>
           </div>
-          <div class="note">Utilise “Copier le lien” pour coller ça sur Insta/LinkedIn.</div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section id="features" class="grid">
-      <div class="tile">
-        <span class="tag">⚡ Performance</span>
-        <h3>Charge vite, impressionne vite</h3>
-        <p>Pas de librairies lourdes : du pur HTML/CSS/JS. L’effet wow sans sacrifier la rapidité.</p>
-      </div>
-      <div class="tile">
-        <span class="tag">✨ Micro-interactions</span>
-        <h3>Le détail qui accroche</h3>
-        <p>Confettis, jauge dynamique, raccourci clavier — c’est vivant, sans être “gadget”.</p>
-      </div>
-      <div class="tile">
-        <span class="tag">📣 Partage</span>
-        <h3>Conçu pour être diffusé</h3>
-        <p>Un message prêt à copier + bouton Partager (si ton navigateur le supporte).</p>
-      </div>
-    </section>
+      <!-- SERVICES -->
+      <section id="services" class="card" style="margin-top:18px">
+        <div class="block">
+          <h2 class="h2">Services</h2>
+          <p class="sub">Une seule place pour vos besoins essentiels : réparation, optimisation, sécurité, réseaux et site web.</p>
 
-    <footer>
-      <span>© <span id="year"></span> SudoJC • Fait sur GitHub Pages</span>
-      <span class="tiny">Version “Buzz” — simple, rapide, mémorable.</span>
-    </footer>
+          <div class="grid3">
+            <div class="tile">
+              <span class="tag">🛠️ Réparation & optimisation</span>
+              <h3>Ordinateur lent? On remet ça d’équerre.</h3>
+              <p>Diagnostic, nettoyage, mise à niveau (SSD/RAM), stabilité, performance et bonnes pratiques pour éviter que ça revienne.</p>
+            </div>
+
+            <div class="tile">
+              <span class="tag">🛡️ Sécurité & virus</span>
+              <h3>On enlève le risque, pas juste le symptôme.</h3>
+              <p>Suppression de menaces, durcissement, mots de passe, sauvegardes, MFA, et conseils simples à appliquer.</p>
+            </div>
+
+            <div class="tile">
+              <span class="tag">🌐 Réseaux & site web</span>
+              <h3>Réseau stable + présence web solide.</h3>
+              <p>Wi-Fi/routeurs, stabilité, configuration, et création de site performant (nom de domaine, SSL, hébergement).</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- METHOD + PRICING -->
+      <section class="split">
+        <div class="card" id="methode">
+          <div class="block">
+            <h2 class="h2">Méthode (zéro blabla)</h2>
+            <p class="sub">Une approche pro : diagnostic → solution → explication → vérification → prévention.</p>
+
+            <div class="list">
+              <div class="row">
+                <div>
+                  <strong>1) Diagnostic causal</strong>
+                  <span>On identifie la vraie cause (performance, disque, réseau, logiciel, sécurité).</span>
+                </div>
+                <div class="price">Clair</div>
+              </div>
+              <div class="row">
+                <div>
+                  <strong>2) Plan de solution</strong>
+                  <span>Options simples, impacts, coûts. Vous décidez. Pas de surprise.</span>
+                </div>
+                <div class="price">Net</div>
+              </div>
+              <div class="row">
+                <div>
+                  <strong>3) Exécution + validation</strong>
+                  <span>On règle, on teste, on documente. On ne quitte pas sur un “ça devrait”.</span>
+                </div>
+                <div class="price">Pro</div>
+              </div>
+              <div class="row">
+                <div>
+                  <strong>4) Prévention</strong>
+                  <span>Petites actions à gros impact : mises à jour, sauvegardes, hygiène sécurité.</span>
+                </div>
+                <div class="price">Durable</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" id="tarifs">
+          <div class="block">
+            <h2 class="h2">Tarifs transparents</h2>
+            <p class="sub">Les prix varient selon la situation, mais voici des repères simples et honnêtes.</p>
+
+            <div class="list">
+              <div class="row">
+                <div>
+                  <strong>Diagnostic</strong>
+                  <span>Rapide et précis — déduit si réparation effectuée.</span>
+                </div>
+                <div class="price">30 $</div>
+              </div>
+
+              <div class="row">
+                <div>
+                  <strong>Suppression de virus / indésirables</strong>
+                  <span>Nettoyage + vérifications + durcissement de base.</span>
+                </div>
+                <div class="price">50 $</div>
+              </div>
+
+              <div class="row">
+                <div>
+                  <strong>Assistance à distance</strong>
+                  <span>Idéal pour logiciels, comptes, réglages, petits dépannages.</span>
+                </div>
+                <div class="price">40 $/h</div>
+              </div>
+
+              <div class="row">
+                <div>
+                  <strong>Windows (installation/optimisation)</strong>
+                  <span>Installation propre, drivers, mises à jour, performance.</span>
+                </div>
+                <div class="price">à partir de 120–140 $</div>
+              </div>
+            </div>
+
+            <p class="small" style="margin-top:12px">
+              💡 Conseil : si tu veux un positionnement “calibre mondial”, on peut transformer ces repères en
+              <strong>forfaits premium</strong> (ex. “Performance Boost”, “Secure Setup”, “PME Essentials”).
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ + CONTACT -->
+      <section class="split">
+        <div class="card" id="faq">
+          <div class="block">
+            <h2 class="h2">FAQ</h2>
+            <p class="sub">Les réponses simples aux questions qu’on se pose avant d’appeler.</p>
+
+            <div class="list">
+              <details>
+                <summary>Est-ce que tu te déplaces ou tu fais du remote?</summary>
+                <p>Les deux. Sur place à Montréal (secteur Villeray–Saint-Michel–Parc-Extension) et aussi à distance quand c’est plus efficace.</p>
+              </details>
+
+              <details>
+                <summary>Est-ce que tu expliques ce que tu fais?</summary>
+                <p>Oui. Objectif : que tu comprennes, que tu puisses décider, et que ça t’évite de revivre le même problème.</p>
+              </details>
+
+              <details>
+                <summary>Est-ce que tu peux aussi faire un site web?</summary>
+                <p>Oui : site vitrine performant, SSL, nom de domaine, hébergement et mise en ligne. Simple et efficace.</p>
+              </details>
+
+              <details>
+                <summary>Comment tu fixes le prix?</summary>
+                <p>On clarifie le besoin, on propose des options, et tu connais le prix avant l’intervention (ou un maximum). Zéro surprise.</p>
+              </details>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" id="contact">
+          <div class="block">
+            <h2 class="h2">Contact</h2>
+            <p class="sub">Le plus simple : un appel. Sinon, envoie un message et on planifie.</p>
+
+            <div class="list">
+              <div class="row">
+                <div>
+                  <strong>Téléphone</strong>
+                  <span><a href="tel:+15148340083">(514) 834-0083</a></span>
+                </div>
+                <div class="price">📞</div>
+              </div>
+
+              <div class="row">
+                <div>
+                  <strong>Adresse (sur rendez-vous)</strong>
+                  <span>8190 av. Christophe-Colomb #1, Montréal, QC H2P 1X2</span>
+                </div>
+                <div class="price">📍</div>
+              </div>
+
+              <div class="row">
+                <div>
+                  <strong>Courriel</strong>
+                  <span>
+                    <a id="mailLink" href="#">Envoyer un courriel (prérempli)</a>
+                  </span>
+                </div>
+                <div class="price">✉️</div>
+              </div>
+            </div>
+
+            <div class="actions" style="margin-top:12px">
+              <a class="btn primary" href="tel:+15148340083">Appeler maintenant</a>
+              <button class="btn" id="smsBtn" type="button">Préparer un SMS</button>
+              <button class="btn" id="shareBtn" type="button">Partager</button>
+            </div>
+
+            <p class="small" style="margin-top:12px">
+              Astuce “premium” : ajoute un domaine + une adresse courriel pro (ex. <em>contact@jcgagnon.ca</em>),
+              et une image OG (og.png). Ça donne instantanément un look “calibre mondial”.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <footer class="wrap">
+        <span>© <span id="year"></span> JC Gagnon Informatique • Tous droits réservés.</span>
+        <span>Propulsé par GitHub Pages • <a href="#top">Haut de page ↑</a></span>
+      </footer>
+    </div>
   </main>
 
   <div class="toast" id="toast">Copié ✅</div>
 
   <script>
-    // ---------- Helpers
+    // ======= Setup
     const $ = (id) => document.getElementById(id);
-    const clamp = (n,min,max)=>Math.max(min,Math.min(max,n));
-
-    // ---------- Elements
-    const btnBuzz = $("btnBuzz");
-    const btnCopy = $("btnCopy");
-    const btnShare = $("btnShare");
-    const buzzEl = $("buzz");
-    const bar = $("bar");
-    const clicksEl = $("clicks");
-    const timeEl = $("time");
     const toast = $("toast");
+    const bar = $("bar");
+    const trust = $("trust");
     $("year").textContent = new Date().getFullYear();
 
-    // ---------- State
-    let clicks = 0;
-    let buzz = 42;
-    let start = performance.now();
+    // Smooth scroll for in-page anchors (native if supported, fallback not needed)
+    document.documentElement.style.scrollBehavior = "smooth";
 
-    // Animate initial bar
-    requestAnimationFrame(()=> bar.style.width = buzz + "%");
+    // Trust bar animation
+    let t = 0;
+    const target = 97; // calibré "premium" :)
+    const step = () => {
+      t = Math.min(target, t + 2);
+      trust.textContent = t.toString();
+      bar.style.width = t + "%";
+      if (t < target) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
 
-    // Timer
-    setInterval(()=>{
-      const seconds = Math.floor((performance.now()-start)/1000);
-      timeEl.textContent = seconds.toString();
-    }, 250);
-
-    // ---------- Toast
+    // Toast
     let toastT;
     function showToast(msg){
       toast.textContent = msg;
@@ -434,131 +724,95 @@
       toastT = setTimeout(()=>toast.classList.remove("show"), 1300);
     }
 
-    // ---------- Copy / Share
-    const url = location.href;
-    const shareText = "On vient de lancer un truc qui claque — viens voir : " + url;
+    // Theme toggle (persists)
+    const themeBtn = $("themeBtn");
+    const key = "jcg-theme";
+    const saved = localStorage.getItem(key);
+    if (saved) document.documentElement.setAttribute("data-theme", saved);
 
-    btnCopy.addEventListener("click", async ()=>{
+    themeBtn.addEventListener("click", () => {
+      const current = document.documentElement.getAttribute("data-theme") || "dark";
+      const next = current === "dark" ? "light" : "dark";
+      document.documentElement.setAttribute("data-theme", next);
+      localStorage.setItem(key, next);
+      showToast(next === "light" ? "Mode clair ☀️" : "Mode sombre 🌙");
+    });
+
+    // Contact payload (edit these if needed)
+    const PHONE_DISPLAY = "(514) 834-0083";
+    const PHONE_TEL = "+15148340083";
+    const ADDRESS = "8190 av. Christophe-Colomb #1, Montréal, QC H2P 1X2";
+
+    // IMPORTANT: change EMAIL below to your real address (or keep the old site’s)
+    const EMAIL = "info@jcgagnon.ca"; // <-- Modifie ici si tu veux
+    const SUBJECT = "Demande d’aide informatique";
+    const BODY =
+`Bonjour JC,
+
+J’aimerais de l’aide pour :
+- (décris brièvement le problème)
+
+Détails utiles :
+- Appareil / OS :
+- Urgence :
+- Sur place ou à distance :
+- Disponibilités :
+
+Téléphone : ${PHONE_DISPLAY}
+Adresse (rendez-vous) : ${ADDRESS}
+
+Merci!`;
+
+    const mailLink = $("mailLink");
+    mailLink.href = `mailto:${encodeURIComponent(EMAIL)}?subject=${encodeURIComponent(SUBJECT)}&body=${encodeURIComponent(BODY)}`;
+
+    // Copy contact info (clipboard)
+    const copyBtn = $("copyBtn");
+    const info =
+`JC Gagnon Informatique
+Téléphone: ${PHONE_DISPLAY}
+Site: ${location.href}
+Adresse (sur rendez-vous): ${ADDRESS}
+Courriel: ${EMAIL}`;
+
+    async function copyText(text){
       try{
-        await navigator.clipboard.writeText(shareText);
-        showToast("Message + lien copiés ✅");
+        await navigator.clipboard.writeText(text);
+        showToast("Infos copiées ✅");
       }catch(e){
-        // fallback
         const ta = document.createElement("textarea");
-        ta.value = shareText;
+        ta.value = text;
         document.body.appendChild(ta);
         ta.select();
         document.execCommand("copy");
         ta.remove();
         showToast("Copié (fallback) ✅");
       }
+    }
+    copyBtn.addEventListener("click", () => copyText(info));
+
+    // SMS (opens default SMS app on mobile if supported)
+    const smsBtn = $("smsBtn");
+    smsBtn.addEventListener("click", () => {
+      const sms = `Bonjour! J’ai besoin d’aide informatique. Voici le lien: ${location.href}`;
+      // iOS/Android support varies
+      const url = `sms:${PHONE_TEL}?&body=${encodeURIComponent(sms)}`;
+      window.location.href = url;
     });
 
-    btnShare.addEventListener("click", async ()=>{
-      if(navigator.share){
+    // Share
+    const shareBtn = $("shareBtn");
+    shareBtn.addEventListener("click", async () => {
+      const url = location.href;
+      if (navigator.share){
         try{
-          await navigator.share({ title: document.title, text: "Viens voir ça 👀", url });
+          await navigator.share({ title: document.title, text: "JC Gagnon Informatique — simple, fiable, efficace.", url });
         }catch(e){ /* user cancelled */ }
       }else{
-        showToast("Partage non supporté — copie le lien 👇");
-        btnCopy.click();
+        await copyText(`JC Gagnon Informatique — ${url}`);
+        showToast("Lien copié pour partage ✅");
       }
     });
-
-    // ---------- Confetti (canvas)
-    const canvas = $("fx");
-    const ctx = canvas.getContext("2d");
-    let W=0,H=0,parts=[];
-    function resize(){
-      W = canvas.width = window.innerWidth * devicePixelRatio;
-      H = canvas.height = window.innerHeight * devicePixelRatio;
-    }
-    window.addEventListener("resize", resize, {passive:true});
-    resize();
-
-    function confettiBurst(x,y,amount=140){
-      const colors = ["#a78bfa","#67e8f9","#86efac","#fde68a","#fda4af","#c4b5fd"];
-      for(let i=0;i<amount;i++){
-        const a = Math.random()*Math.PI*2;
-        const sp = 4 + Math.random()*10;
-        parts.push({
-          x:x*devicePixelRatio, y:y*devicePixelRatio,
-          vx: Math.cos(a)*sp, vy: Math.sin(a)*sp - (6+Math.random()*4),
-          g: 0.35 + Math.random()*0.18,
-          r: 2 + Math.random()*4,
-          rot: Math.random()*Math.PI,
-          vr: (Math.random()-0.5)*0.35,
-          c: colors[(Math.random()*colors.length)|0],
-          life: 120 + (Math.random()*40|0)
-        });
-      }
-    }
-
-    function tick(){
-      ctx.clearRect(0,0,W,H);
-      for(let i=parts.length-1;i>=0;i--){
-        const p = parts[i];
-        p.life--;
-        p.vy += p.g;
-        p.x += p.vx;
-        p.y += p.vy;
-        p.rot += p.vr;
-
-        ctx.save();
-        ctx.translate(p.x,p.y);
-        ctx.rotate(p.rot);
-        ctx.fillStyle = p.c;
-        ctx.globalAlpha = clamp(p.life/120,0,1);
-        ctx.fillRect(-p.r, -p.r/2, p.r*2.2, p.r);
-        ctx.restore();
-
-        if(p.life<=0 || p.y>H+40) parts.splice(i,1);
-      }
-      requestAnimationFrame(tick);
-    }
-    tick();
-
-    // ---------- Buzz logic
-    function boostBuzz(amount){
-      buzz = clamp(buzz + amount, 0, 100);
-      buzzEl.textContent = buzz.toString();
-      bar.style.width = buzz + "%";
-    }
-
-    function doBuzz(fromKeyboard=false){
-      clicks++;
-      clicksEl.textContent = clicks.toString();
-
-      const amount = 6 + (Math.random()*10|0);
-      boostBuzz(amount);
-
-      const rect = btnBuzz.getBoundingClientRect();
-      const x = rect.left + rect.width/2;
-      const y = rect.top + rect.height/2;
-
-      confettiBurst(x, y, fromKeyboard ? 200 : 140);
-
-      // Tiny “screen shake” feel (subtle)
-      document.body.animate([
-        { transform: "translate3d(0,0,0)" },
-        { transform: "translate3d(0,-1px,0)" },
-        { transform: "translate3d(0,0,0)" }
-      ], { duration: 180, easing: "ease-out" });
-
-      showToast("Buzz +"+amount+"% 🚀");
-    }
-
-    btnBuzz.addEventListener("click", ()=> doBuzz(false));
-
-    // Keyboard shortcut
-    window.addEventListener("keydown", (e)=>{
-      if(e.key.toLowerCase()==="b"){
-        doBuzz(true);
-      }
-    });
-
-    // A tiny easter egg: auto nudge buzz after a moment
-    setTimeout(()=> boostBuzz(3), 900);
   </script>
 </body>
 </html>
