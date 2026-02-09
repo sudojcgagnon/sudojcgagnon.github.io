@@ -3,18 +3,562 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mon site</title>
+  <meta name="theme-color" content="#0b0f1a" />
+  <meta name="description" content="Une page d’accueil qui claque — performance, style, partage." />
+
+  <!-- Open Graph / social preview -->
+  <meta property="og:title" content="SudoJC Gagnon — ⚡️ Le lancement" />
+  <meta property="og:description" content="Une expérience web qui accroche. Clique, partage, fais monter le buzz." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://sudojcgagnon.github.io/" />
+
+  <title>SudoJC — Lancement</title>
+
   <style>
-    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; max-width: 780px; margin: 40px auto; padding: 0 16px; }
-    .card { padding: 20px; border: 1px solid #e5e7eb; border-radius: 16px; }
-    h1 { margin: 0 0 8px; }
-    p { line-height: 1.6; }
+    :root{
+      --bg:#070a12;
+      --card: rgba(255,255,255,.06);
+      --card2: rgba(255,255,255,.10);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.68);
+      --line: rgba(255,255,255,.12);
+      --a:#7c3aed;   /* violet */
+      --b:#06b6d4;   /* cyan */
+      --c:#22c55e;   /* vert */
+      --d:#f59e0b;   /* ambre */
+      --shadow: 0 20px 80px rgba(0,0,0,.55);
+      --radius: 22px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: radial-gradient(1200px 800px at 20% 10%, rgba(124,58,237,.18), transparent 60%),
+                  radial-gradient(1000px 700px at 80% 30%, rgba(6,182,212,.16), transparent 55%),
+                  radial-gradient(900px 700px at 55% 90%, rgba(34,197,94,.12), transparent 55%),
+                  var(--bg);
+      color:var(--text);
+      overflow-x:hidden;
+    }
+
+    /* Aurora layer */
+    .aurora{
+      position:fixed; inset:-20%;
+      background:
+        radial-gradient(closest-side, rgba(124,58,237,.25), transparent 60%),
+        radial-gradient(closest-side, rgba(6,182,212,.22), transparent 60%),
+        radial-gradient(closest-side, rgba(34,197,94,.20), transparent 60%),
+        radial-gradient(closest-side, rgba(245,158,11,.14), transparent 60%);
+      filter: blur(50px) saturate(140%);
+      opacity:.85;
+      animation: float 14s ease-in-out infinite alternate;
+      pointer-events:none;
+      transform: translate3d(0,0,0);
+    }
+    @keyframes float{
+      0%{transform: translate3d(-3%, -2%, 0) rotate(0.3deg) scale(1.02)}
+      100%{transform: translate3d(3%, 2%, 0) rotate(-0.3deg) scale(1.04)}
+    }
+
+    /* Grain */
+    .grain{
+      position:fixed; inset:0;
+      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E");
+      mix-blend-mode:overlay;
+      opacity:.22;
+      pointer-events:none;
+    }
+
+    header{
+      position:sticky; top:0; z-index:10;
+      backdrop-filter: blur(14px);
+      background: linear-gradient(to bottom, rgba(7,10,18,.72), rgba(7,10,18,.25));
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .nav{
+      max-width:1100px; margin:0 auto;
+      padding:16px 18px;
+      display:flex; align-items:center; justify-content:space-between; gap:14px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px; font-weight:700; letter-spacing:.2px;
+    }
+    .dot{
+      width:12px; height:12px; border-radius:99px;
+      background: conic-gradient(from 180deg, var(--a), var(--b), var(--c), var(--d), var(--a));
+      box-shadow: 0 0 0 6px rgba(255,255,255,.04);
+    }
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 12px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.06);
+      border-radius:999px;
+      color:var(--muted);
+      font-size:13px;
+      user-select:none;
+    }
+    .live{
+      width:8px; height:8px; border-radius:99px;
+      background:#22c55e;
+      box-shadow:0 0 0 0 rgba(34,197,94,.55);
+      animation:pulse 1.4s infinite;
+    }
+    @keyframes pulse{
+      0%{box-shadow:0 0 0 0 rgba(34,197,94,.55)}
+      70%{box-shadow:0 0 0 10px rgba(34,197,94,0)}
+      100%{box-shadow:0 0 0 0 rgba(34,197,94,0)}
+    }
+
+    main{max-width:1100px; margin:0 auto; padding:34px 18px 80px}
+    .hero{
+      display:grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap:22px;
+      align-items:stretch;
+    }
+    @media (max-width: 900px){
+      .hero{grid-template-columns:1fr}
+    }
+
+    .card{
+      border:1px solid rgba(255,255,255,.10);
+      background: linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .card::before{
+      content:"";
+      position:absolute; inset:-2px;
+      background: radial-gradient(600px 300px at 20% 10%, rgba(124,58,237,.22), transparent 55%),
+                  radial-gradient(500px 260px at 90% 40%, rgba(6,182,212,.18), transparent 55%),
+                  radial-gradient(500px 260px at 50% 95%, rgba(34,197,94,.14), transparent 55%);
+      opacity:.8;
+      pointer-events:none;
+    }
+
+    .hero-left{padding:28px 26px}
+    .kicker{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:10px 12px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.25);
+      color:var(--muted);
+      font-size:13px;
+      position:relative; z-index:1;
+    }
+    .spark{filter: drop-shadow(0 10px 18px rgba(124,58,237,.35));}
+    h1{
+      margin:16px 0 10px;
+      font-size: clamp(36px, 5vw, 56px);
+      line-height:1.03;
+      letter-spacing:-.02em;
+      position:relative; z-index:1;
+    }
+    .gradient{
+      background: linear-gradient(90deg, #fff, rgba(255,255,255,.88), #a5b4fc, #67e8f9, #86efac);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
+    .lead{
+      margin:0;
+      color:var(--muted);
+      font-size: clamp(15px, 2.2vw, 18px);
+      line-height:1.6;
+      max-width: 60ch;
+      position:relative; z-index:1;
+    }
+
+    .actions{
+      display:flex; flex-wrap:wrap; gap:10px;
+      margin-top:18px;
+      position:relative; z-index:1;
+    }
+    button, a.btn{
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.08);
+      color:var(--text);
+      padding:12px 14px;
+      border-radius: 14px;
+      font-weight:650;
+      font-size:14px;
+      cursor:pointer;
+      text-decoration:none;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+      display:inline-flex; align-items:center; gap:10px;
+    }
+    button:hover, a.btn:hover{transform: translateY(-1px); background: rgba(255,255,255,.11); border-color: rgba(255,255,255,.18)}
+    button.primary, a.btn.primary{
+      background: linear-gradient(135deg, rgba(124,58,237,.55), rgba(6,182,212,.35));
+      border-color: rgba(255,255,255,.18);
+    }
+    button.primary:hover, a.btn.primary:hover{background: linear-gradient(135deg, rgba(124,58,237,.66), rgba(6,182,212,.42));}
+    .tiny{font-size:12px; font-weight:600; color:rgba(255,255,255,.75)}
+    .note{margin-top:10px; color:rgba(255,255,255,.55); font-size:12.5px; position:relative; z-index:1}
+
+    .hero-right{
+      padding:18px;
+      display:grid;
+      grid-template-rows: auto 1fr auto;
+      gap:12px;
+    }
+    .stat{
+      padding:14px 14px;
+      border-radius: 18px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.18);
+      position:relative; z-index:1;
+    }
+    .stat .label{color:rgba(255,255,255,.62); font-size:12px}
+    .stat .value{font-size:22px; font-weight:800; letter-spacing:-.02em; margin-top:6px}
+    .statgrid{display:grid; grid-template-columns:1fr 1fr; gap:12px}
+    .progress{
+      height:10px; border-radius:999px;
+      background: rgba(255,255,255,.08);
+      overflow:hidden;
+      margin-top:10px;
+    }
+    .bar{
+      height:100%;
+      width: 0%;
+      background: linear-gradient(90deg, rgba(124,58,237,.9), rgba(6,182,212,.9), rgba(34,197,94,.9));
+      border-radius:999px;
+      transition: width .7s ease;
+    }
+
+    .grid{
+      margin-top:18px;
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:12px;
+    }
+    @media (max-width: 900px){ .grid{grid-template-columns:1fr} }
+    .tile{
+      padding:16px;
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.18);
+      position:relative;
+      overflow:hidden;
+    }
+    .tile h3{margin:2px 0 6px; font-size:15px}
+    .tile p{margin:0; color:rgba(255,255,255,.66); font-size:13px; line-height:1.55}
+    .tag{
+      display:inline-flex; align-items:center;
+      padding:6px 10px;
+      border-radius:999px;
+      font-size:12px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color:rgba(255,255,255,.75);
+    }
+
+    footer{
+      margin-top:28px;
+      color:rgba(255,255,255,.55);
+      font-size:12.5px;
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+    .toast{
+      position:fixed; left:50%; bottom:22px; transform:translateX(-50%);
+      padding:12px 14px;
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(10,12,20,.65);
+      backdrop-filter: blur(10px);
+      color:rgba(255,255,255,.86);
+      box-shadow: 0 18px 60px rgba(0,0,0,.55);
+      opacity:0; pointer-events:none;
+      transition: opacity .18s ease, transform .18s ease;
+      z-index:50;
+    }
+    .toast.show{opacity:1; transform:translateX(-50%) translateY(-4px)}
+    canvas#fx{
+      position:fixed; inset:0;
+      pointer-events:none;
+      z-index:40;
+    }
+    .kbd{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size:12px;
+      padding:2px 8px;
+      border-radius:10px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color:rgba(255,255,255,.75);
+      margin-left:6px;
+    }
   </style>
 </head>
+
 <body>
-  <div class="card">
-    <h1>Bonjour 👋</h1>
-    <p>Mon site est en ligne sur GitHub Pages.</p>
-  </div>
+  <div class="aurora" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+  <canvas id="fx"></canvas>
+
+  <header>
+    <div class="nav">
+      <div class="brand">
+        <span class="dot" aria-hidden="true"></span>
+        <span>SudoJC</span>
+        <span class="pill"><span class="live"></span> Live</span>
+      </div>
+      <div class="pill">Astuce : appuie sur <span class="kbd">B</span> pour le “buzz”</div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="card hero-left">
+        <div class="kicker">
+          <span class="spark">⚡</span>
+          <span>Nouvelle expérience • Ultra rapide • Partageable</span>
+        </div>
+
+        <h1><span class="gradient">Une page qui attire l’attention.</span><br/>Et qui donne envie de cliquer.</h1>
+
+        <p class="lead">
+          Bienvenue sur <strong>sudojcgagnon.github.io</strong>. Ici, on lance quelque chose de simple mais mémorable :
+          un design qui claque, une interaction qui surprend, et un lien facile à partager.
+        </p>
+
+        <div class="actions">
+          <button class="primary" id="btnBuzz">Lancer le buzz ✨</button>
+          <button id="btnCopy">Copier le lien</button>
+          <button id="btnShare">Partager</button>
+          <a class="btn" href="#features">Voir les features</a>
+        </div>
+
+        <div class="note">💡 Pro-tip : “Lancer le buzz” déclenche un effet confetti + boost la jauge.</div>
+      </div>
+
+      <div class="card hero-right">
+        <div class="stat">
+          <div class="label">Niveau de buzz (en direct)</div>
+          <div class="value"><span id="buzz">42</span>%</div>
+          <div class="progress"><div class="bar" id="bar"></div></div>
+        </div>
+
+        <div class="statgrid">
+          <div class="stat">
+            <div class="label">Clics sur “Buzz”</div>
+            <div class="value" id="clicks">0</div>
+          </div>
+          <div class="stat">
+            <div class="label">Temps sur la page</div>
+            <div class="value"><span id="time">0</span>s</div>
+          </div>
+        </div>
+
+        <div class="stat">
+          <div class="label">Phrase partageable</div>
+          <div class="value" style="font-size:16px; line-height:1.25; font-weight:750">
+            “On vient de lancer un truc qui claque — viens voir.”
+          </div>
+          <div class="note">Utilise “Copier le lien” pour coller ça sur Insta/LinkedIn.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="grid">
+      <div class="tile">
+        <span class="tag">⚡ Performance</span>
+        <h3>Charge vite, impressionne vite</h3>
+        <p>Pas de librairies lourdes : du pur HTML/CSS/JS. L’effet wow sans sacrifier la rapidité.</p>
+      </div>
+      <div class="tile">
+        <span class="tag">✨ Micro-interactions</span>
+        <h3>Le détail qui accroche</h3>
+        <p>Confettis, jauge dynamique, raccourci clavier — c’est vivant, sans être “gadget”.</p>
+      </div>
+      <div class="tile">
+        <span class="tag">📣 Partage</span>
+        <h3>Conçu pour être diffusé</h3>
+        <p>Un message prêt à copier + bouton Partager (si ton navigateur le supporte).</p>
+      </div>
+    </section>
+
+    <footer>
+      <span>© <span id="year"></span> SudoJC • Fait sur GitHub Pages</span>
+      <span class="tiny">Version “Buzz” — simple, rapide, mémorable.</span>
+    </footer>
+  </main>
+
+  <div class="toast" id="toast">Copié ✅</div>
+
+  <script>
+    // ---------- Helpers
+    const $ = (id) => document.getElementById(id);
+    const clamp = (n,min,max)=>Math.max(min,Math.min(max,n));
+
+    // ---------- Elements
+    const btnBuzz = $("btnBuzz");
+    const btnCopy = $("btnCopy");
+    const btnShare = $("btnShare");
+    const buzzEl = $("buzz");
+    const bar = $("bar");
+    const clicksEl = $("clicks");
+    const timeEl = $("time");
+    const toast = $("toast");
+    $("year").textContent = new Date().getFullYear();
+
+    // ---------- State
+    let clicks = 0;
+    let buzz = 42;
+    let start = performance.now();
+
+    // Animate initial bar
+    requestAnimationFrame(()=> bar.style.width = buzz + "%");
+
+    // Timer
+    setInterval(()=>{
+      const seconds = Math.floor((performance.now()-start)/1000);
+      timeEl.textContent = seconds.toString();
+    }, 250);
+
+    // ---------- Toast
+    let toastT;
+    function showToast(msg){
+      toast.textContent = msg;
+      toast.classList.add("show");
+      clearTimeout(toastT);
+      toastT = setTimeout(()=>toast.classList.remove("show"), 1300);
+    }
+
+    // ---------- Copy / Share
+    const url = location.href;
+    const shareText = "On vient de lancer un truc qui claque — viens voir : " + url;
+
+    btnCopy.addEventListener("click", async ()=>{
+      try{
+        await navigator.clipboard.writeText(shareText);
+        showToast("Message + lien copiés ✅");
+      }catch(e){
+        // fallback
+        const ta = document.createElement("textarea");
+        ta.value = shareText;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand("copy");
+        ta.remove();
+        showToast("Copié (fallback) ✅");
+      }
+    });
+
+    btnShare.addEventListener("click", async ()=>{
+      if(navigator.share){
+        try{
+          await navigator.share({ title: document.title, text: "Viens voir ça 👀", url });
+        }catch(e){ /* user cancelled */ }
+      }else{
+        showToast("Partage non supporté — copie le lien 👇");
+        btnCopy.click();
+      }
+    });
+
+    // ---------- Confetti (canvas)
+    const canvas = $("fx");
+    const ctx = canvas.getContext("2d");
+    let W=0,H=0,parts=[];
+    function resize(){
+      W = canvas.width = window.innerWidth * devicePixelRatio;
+      H = canvas.height = window.innerHeight * devicePixelRatio;
+    }
+    window.addEventListener("resize", resize, {passive:true});
+    resize();
+
+    function confettiBurst(x,y,amount=140){
+      const colors = ["#a78bfa","#67e8f9","#86efac","#fde68a","#fda4af","#c4b5fd"];
+      for(let i=0;i<amount;i++){
+        const a = Math.random()*Math.PI*2;
+        const sp = 4 + Math.random()*10;
+        parts.push({
+          x:x*devicePixelRatio, y:y*devicePixelRatio,
+          vx: Math.cos(a)*sp, vy: Math.sin(a)*sp - (6+Math.random()*4),
+          g: 0.35 + Math.random()*0.18,
+          r: 2 + Math.random()*4,
+          rot: Math.random()*Math.PI,
+          vr: (Math.random()-0.5)*0.35,
+          c: colors[(Math.random()*colors.length)|0],
+          life: 120 + (Math.random()*40|0)
+        });
+      }
+    }
+
+    function tick(){
+      ctx.clearRect(0,0,W,H);
+      for(let i=parts.length-1;i>=0;i--){
+        const p = parts[i];
+        p.life--;
+        p.vy += p.g;
+        p.x += p.vx;
+        p.y += p.vy;
+        p.rot += p.vr;
+
+        ctx.save();
+        ctx.translate(p.x,p.y);
+        ctx.rotate(p.rot);
+        ctx.fillStyle = p.c;
+        ctx.globalAlpha = clamp(p.life/120,0,1);
+        ctx.fillRect(-p.r, -p.r/2, p.r*2.2, p.r);
+        ctx.restore();
+
+        if(p.life<=0 || p.y>H+40) parts.splice(i,1);
+      }
+      requestAnimationFrame(tick);
+    }
+    tick();
+
+    // ---------- Buzz logic
+    function boostBuzz(amount){
+      buzz = clamp(buzz + amount, 0, 100);
+      buzzEl.textContent = buzz.toString();
+      bar.style.width = buzz + "%";
+    }
+
+    function doBuzz(fromKeyboard=false){
+      clicks++;
+      clicksEl.textContent = clicks.toString();
+
+      const amount = 6 + (Math.random()*10|0);
+      boostBuzz(amount);
+
+      const rect = btnBuzz.getBoundingClientRect();
+      const x = rect.left + rect.width/2;
+      const y = rect.top + rect.height/2;
+
+      confettiBurst(x, y, fromKeyboard ? 200 : 140);
+
+      // Tiny “screen shake” feel (subtle)
+      document.body.animate([
+        { transform: "translate3d(0,0,0)" },
+        { transform: "translate3d(0,-1px,0)" },
+        { transform: "translate3d(0,0,0)" }
+      ], { duration: 180, easing: "ease-out" });
+
+      showToast("Buzz +"+amount+"% 🚀");
+    }
+
+    btnBuzz.addEventListener("click", ()=> doBuzz(false));
+
+    // Keyboard shortcut
+    window.addEventListener("keydown", (e)=>{
+      if(e.key.toLowerCase()==="b"){
+        doBuzz(true);
+      }
+    });
+
+    // A tiny easter egg: auto nudge buzz after a moment
+    setTimeout(()=> boostBuzz(3), 900);
+  </script>
 </body>
 </html>
