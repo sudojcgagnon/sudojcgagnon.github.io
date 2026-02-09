@@ -395,6 +395,84 @@
       .btn{transition:none}
       .bar{transition:none}
     }
+    /* =========================
+   MOBILE FIXES (<= 768px)
+   ========================= */
+@media (max-width: 768px) {
+
+  body {
+    font-size: 15px;
+  }
+
+  header {
+    position: static;
+  }
+
+  .nav {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .navlinks {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .hero {
+    grid-template-columns: 1fr !important;
+  }
+
+  .hero-left,
+  .hero-right {
+    padding: 18px 16px;
+  }
+
+  h1 {
+    font-size: clamp(28px, 8vw, 36px);
+    line-height: 1.1;
+  }
+
+  .lead {
+    font-size: 15px;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  .actions .btn,
+  .actions button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .grid,
+  .grid3,
+  .split {
+    grid-template-columns: 1fr !important;
+  }
+
+  .statgrid {
+    grid-template-columns: 1fr;
+  }
+
+  footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  /* Réduire les effets lourds */
+  .aurora {
+    opacity: 0.45;
+    filter: blur(70px);
+  }
+
+  .grain {
+    opacity: 0.12;
+  }
+}
   </style>
 </head>
 
