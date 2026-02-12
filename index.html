@@ -5,14 +5,97 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="theme-color" content="#070A12" />
   <meta name="description" content="JC Gagnon Informatique — Support TI, optimisation, sécurité, Windows, réseaux et sites web. Simple. Fiable. Efficace. Montréal & Joliette." />
+  <link rel="canonical" href="https://www.jcgagnon.ca/" />
 
   <meta property="og:title" content="JC Gagnon Informatique — Simple. Fiable. Efficace." />
   <meta property="og:description" content="Support informatique professionnel à Montréal & Joliette. Diagnostic clair, solutions durables, sans jargon." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.jcgagnon.ca/" />
+  <!-- Optionnel: crée /og-image.png (1200x630) ou change l'URL vers une image existante -->
+  <meta property="og:image" content="https://www.jcgagnon.ca/og-image.png" />
 
   <title>JC Gagnon Informatique</title>
 
+  <!-- ===== Schema.org (JSON-LD) ===== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://www.jcgagnon.ca/#website",
+        "url": "https://www.jcgagnon.ca/",
+        "name": "JC Gagnon Informatique",
+        "inLanguage": "fr-CA"
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://www.jcgagnon.ca/#webpage",
+        "url": "https://www.jcgagnon.ca/",
+        "name": "JC Gagnon Informatique",
+        "isPartOf": { "@id": "https://www.jcgagnon.ca/#website" },
+        "inLanguage": "fr-CA",
+        "about": { "@id": "https://www.jcgagnon.ca/#business" }
+      },
+      {
+        "@type": ["LocalBusiness", "ProfessionalService"],
+        "@id": "https://www.jcgagnon.ca/#business",
+        "name": "JC Gagnon Informatique",
+        "url": "https://www.jcgagnon.ca/",
+        "image": "https://www.jcgagnon.ca/og-image.png",
+        "description": "Support TI, optimisation, sécurité, Windows, réseaux et sites web. Simple. Fiable. Efficace. Montréal & Joliette.",
+        "telephone": "+1-514-834-0083",
+        "email": "jcgagnon@outlook.com",
+        "areaServed": [
+          { "@type": "City", "name": "Montréal", "address": { "@type": "PostalAddress", "addressRegion": "QC", "addressCountry": "CA" } },
+          { "@type": "City", "name": "Joliette", "address": { "@type": "PostalAddress", "addressRegion": "QC", "addressCountry": "CA" } }
+        ],
+        "sameAs": ["https://www.jcgagnon.ca/"],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Services",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "name": "Réparation & optimisation",
+              "description": "Ordinateur lent, instable, mise à niveau (SSD/RAM), installation propre, performance.",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Réparation & optimisation",
+                "serviceType": "Support informatique",
+                "provider": { "@id": "https://www.jcgagnon.ca/#business" }
+              }
+            },
+            {
+              "@type": "Offer",
+              "name": "Sécurité & sauvegardes",
+              "description": "Nettoyage, durcissement, MFA, sauvegardes, bonnes pratiques — on réduit le risque pour vrai.",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Sécurité & sauvegardes",
+                "serviceType": "Cybersécurité et sauvegarde",
+                "provider": { "@id": "https://www.jcgagnon.ca/#business" }
+              }
+            },
+            {
+              "@type": "Offer",
+              "name": "Réseaux & sites web",
+              "description": "Wi-Fi fiable, configuration réseau, site vitrine rapide (domaine, SSL, mise en ligne).",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Réseaux & sites web",
+                "serviceType": "Réseautique et web",
+                "provider": { "@id": "https://www.jcgagnon.ca/#business" }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- ===== Styles ===== -->
   <style>
     :root{
       --bg:#070a12;
@@ -48,7 +131,28 @@
     a{ color:inherit; text-decoration:none; }
     .wrap{ max-width: var(--max); margin:0 auto; padding: 0 16px; }
 
-    /* ===== Header (mobile-first) ===== */
+    /* Skip link */
+    .skip{
+      position:absolute;
+      left:-9999px;
+      top:auto;
+      width:1px;
+      height:1px;
+      overflow:hidden;
+    }
+    .skip:focus{
+      left:16px;
+      top:12px;
+      width:auto;
+      height:auto;
+      padding:10px 12px;
+      border-radius: 12px;
+      background: rgba(255,255,255,.12);
+      border:1px solid rgba(255,255,255,.18);
+      z-index: 9999;
+    }
+
+    /* ===== Header ===== */
     header{
       position: sticky; top:0; z-index:50;
       background: rgba(7,10,18,.72);
@@ -69,6 +173,7 @@
       width:12px; height:12px; border-radius:999px;
       background: conic-gradient(from 180deg, var(--a), var(--b), var(--c), var(--a));
       box-shadow: 0 0 0 6px rgba(255,255,255,.04);
+      flex: 0 0 auto;
     }
 
     .menuBtn{
@@ -97,7 +202,6 @@
 
     .navOpen nav.links{ display:flex; }
 
-    /* Desktop nav */
     @media (min-width: 860px){
       .menuBtn{ display:none; }
       nav.links{
@@ -135,7 +239,7 @@
       padding: 12px 14px;
       font-weight: 850;
       cursor:pointer;
-      min-height: 48px; /* tap friendly */
+      min-height: 48px;
     }
     .btn.primary{
       background: linear-gradient(135deg, rgba(124,58,237,.80), rgba(6,182,212,.55));
@@ -144,7 +248,7 @@
 
     main{ padding: 18px 0 70px; }
 
-    /* ===== Hero (mobile-first) ===== */
+    /* ===== Hero ===== */
     .hero{
       display:grid;
       grid-template-columns: 1fr;
@@ -200,7 +304,6 @@
     .mini .t{ font-size:12px; color: rgba(255,255,255,.65); }
     .mini .v{ margin-top:6px; font-weight: 900; letter-spacing:-.02em; }
 
-    /* Desktop hero */
     @media (min-width: 980px){
       .hero{ grid-template-columns: 1.15fr .85fr; gap:18px; }
       .heroLeft{ padding: 26px; }
@@ -272,10 +375,12 @@
 </head>
 
 <body>
+  <a class="skip" href="#main">Aller au contenu principal</a>
+
   <header>
     <div class="wrap">
       <div class="nav" id="nav">
-        <a class="brand" href="#top" aria-label="JC Gagnon Informatique">
+        <a class="brand" href="#top" aria-label="JC Gagnon Informatique (haut de page)">
           <span class="dot" aria-hidden="true"></span>
           <span>JC Gagnon Informatique</span>
         </a>
@@ -284,7 +389,7 @@
           Menu ☰
         </button>
 
-        <nav class="links" id="links" aria-label="Navigation">
+        <nav class="links" id="links" aria-label="Navigation principale">
           <a href="#services">Services</a>
           <a href="#tarifs">Tarifs</a>
           <a href="#contact">Contact</a>
@@ -293,10 +398,10 @@
     </div>
   </header>
 
-  <main>
+  <main id="main">
     <div class="wrap" id="top">
 
-      <section class="hero">
+      <section class="hero" aria-label="Présentation">
         <div class="card heroLeft">
           <div class="kicker">⚡ Simple • Fiable • Efficace — Support TI & solutions web</div>
           <h1><span class="grad">Un partenaire informatique</span><br/>qui règle le vrai problème.</h1>
@@ -305,13 +410,13 @@
             Diagnostic clair, solution durable, explication simple.
           </p>
 
-          <div class="cta">
-            <a class="btn primary" href="tel:+15148340083">📞 Appeler (514) 834-0083</a>
+          <div class="cta" role="group" aria-label="Actions rapides">
+            <a class="btn primary" href="tel:+15148340083" aria-label="Appeler JC Gagnon Informatique au 514 834 0083">📞 Appeler (514) 834-0083</a>
             <a class="btn" href="#contact">📩 Demander une soumission</a>
           </div>
         </div>
 
-        <div class="card heroRight">
+        <div class="card heroRight" aria-label="Points forts">
           <div class="mini">
             <div class="t">Intervention</div>
             <div class="v">Sur place ou à distance</div>
@@ -327,23 +432,23 @@
         </div>
       </section>
 
-      <section id="services" class="card">
+      <section id="services" class="card" aria-label="Services">
         <div class="sectionPad">
           <h2 style="margin:0 0 6px; letter-spacing:-.02em;">Services</h2>
           <p style="margin:0; color: var(--muted); line-height:1.6;">
             Une seule place pour vos besoins essentiels : réparation, optimisation, sécurité, réseaux et web.
           </p>
 
-          <div class="grid">
-            <div class="tile">
+          <div class="grid" role="list">
+            <div class="tile" role="listitem">
               <h3>🛠️ Réparation & optimisation</h3>
               <p>Ordinateur lent, instable, mise à niveau (SSD/RAM), installation propre, performance.</p>
             </div>
-            <div class="tile">
+            <div class="tile" role="listitem">
               <h3>🛡️ Sécurité & sauvegardes</h3>
               <p>Nettoyage, durcissement, MFA, sauvegardes, bonnes pratiques — on réduit le risque pour vrai.</p>
             </div>
-            <div class="tile">
+            <div class="tile" role="listitem">
               <h3>🌐 Réseaux & sites web</h3>
               <p>Wi-Fi fiable, configuration réseau, site vitrine rapide (domaine, SSL, mise en ligne).</p>
             </div>
@@ -351,8 +456,8 @@
         </div>
       </section>
 
-      <section class="split">
-        <div class="card" id="tarifs">
+      <section class="split" aria-label="Tarifs et contact">
+        <div class="card" id="tarifs" aria-label="Tarifs">
           <div class="sectionPad">
             <h2 style="margin:0 0 6px; letter-spacing:-.02em;">Tarifs</h2>
             <p style="margin:0 0 10px; color: var(--muted); line-height:1.6;">Repères transparents (selon le cas).</p>
@@ -372,7 +477,7 @@
           </div>
         </div>
 
-        <div class="card" id="contact">
+        <div class="card" id="contact" aria-label="Contact">
           <div class="sectionPad">
             <h2 style="margin:0 0 6px; letter-spacing:-.02em;">Contact</h2>
             <p style="margin:0 0 10px; color: var(--muted); line-height:1.6;">
@@ -381,12 +486,12 @@
 
             <div class="row">
               <strong>Téléphone</strong>
-              <span><a href="tel:+15148340083">(514) 834-0083</a></span>
+              <span><a href="tel:+15148340083" aria-label="Téléphoner au 514 834 0083">(514) 834-0083</a></span>
             </div>
 
             <div class="row" style="margin-top:10px;">
               <strong>Courriel</strong>
-              <span><a id="mailLink" href="#">jcgagnon@outlook.com</a></span>
+              <span><a id="mailLink" href="#" aria-label="Envoyer un courriel à JC Gagnon Informatique">jcgagnon@outlook.com</a></span>
             </div>
 
             <div class="row" style="margin-top:10px;">
@@ -400,7 +505,7 @@
             </div>
 
             <div style="margin-top:10px; color: rgba(255,255,255,.55); font-size:12.5px;">
-              v2026-02-09-RESPONSIVE
+              v2026-02-12-SCHEMA
             </div>
           </div>
         </div>
@@ -426,7 +531,7 @@
     });
 
     // Contact info / mailto
-    const EMAIL = "jcgagnon@outlook.com"; // <-- change if needed
+    const EMAIL = "jcgagnon@outlook.com";
     const SUBJECT = "Demande d’aide informatique";
     const BODY =
 `Bonjour JC,
@@ -441,8 +546,9 @@ Détails utiles :
 - Disponibilités :
 
 Merci!`;
-    document.getElementById("mailLink").href =
-      `mailto:${encodeURIComponent(EMAIL)}?subject=${encodeURIComponent(SUBJECT)}&body=${encodeURIComponent(BODY)}`;
+
+    const mailLink = document.getElementById("mailLink");
+    mailLink.href = `mailto:${encodeURIComponent(EMAIL)}?subject=${encodeURIComponent(SUBJECT)}&body=${encodeURIComponent(BODY)}`;
 
     // Copy + Share
     const info =
@@ -470,7 +576,9 @@ Courriel: ${EMAIL}`;
     document.getElementById("shareBtn").addEventListener("click", async ()=>{
       const url = location.origin;
       if(navigator.share){
-        try{ await navigator.share({ title: document.title, text: "JC Gagnon Informatique", url }); } catch(e){}
+        try{
+          await navigator.share({ title: document.title, text: "JC Gagnon Informatique", url });
+        }catch(e){}
       }else{
         copyText("JC Gagnon Informatique — " + url);
       }
