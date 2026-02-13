@@ -1,0 +1,473 @@
+<!doctype html>
+<html lang="fr-CA">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Réparation & optimisation | Support informatique – jcgagnon.ca</title>
+  <meta name="description" content="Réparation et optimisation PC/portable : lenteur, plantages, mises à jour, nettoyage, SSD, RAM, malware. Service local avec diagnostic clair et solutions durables." />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://jcgagnon.ca/reparation-optimisation.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Réparation & optimisation | Support informatique" />
+  <meta property="og:description" content="PC lent? Problèmes Windows? Optimisation, nettoyage, diagnostic, SSD/RAM, suppression de malware et correctifs durables." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://jcgagnon.ca/reparation-optimisation.html" />
+
+  <style>
+    :root{
+      --bg:#0b1220;
+      --card:#111a2e;
+      --card2:#0f1830;
+      --txt:#e9eefc;
+      --muted:#b6c2e2;
+      --accent:#6aa6ff;
+      --accent2:#7cf0c5;
+      --line:rgba(255,255,255,.12);
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius:18px;
+      --max:1100px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: radial-gradient(1200px 600px at 20% 0%, rgba(106,166,255,.25), transparent 60%),
+                  radial-gradient(1000px 700px at 90% 10%, rgba(124,240,197,.18), transparent 55%),
+                  var(--bg);
+      color:var(--txt);
+      line-height:1.5;
+    }
+    a{color:inherit}
+    header{
+      position:sticky; top:0; z-index:10;
+      backdrop-filter: blur(10px);
+      background: rgba(11,18,32,.72);
+      border-bottom:1px solid var(--line);
+    }
+    .wrap{max-width:var(--max); margin:0 auto; padding:0 18px}
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 0;
+      gap:12px;
+    }
+    .brand{display:flex; flex-direction:column; gap:2px}
+    .brand strong{letter-spacing:.3px}
+    .brand span{font-size:.9rem; color:var(--muted)}
+    .navlinks{display:flex; gap:12px; flex-wrap:wrap; justify-content:flex-end}
+    .chip{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:9px 12px; border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      border-radius:999px;
+      text-decoration:none;
+      font-size:.95rem;
+    }
+    .chip:hover{border-color: rgba(106,166,255,.55)}
+    main{padding:34px 0 70px}
+    .hero{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap:18px;
+      align-items:stretch;
+      margin-top:10px;
+    }
+    @media (max-width: 900px){
+      .hero{grid-template-columns:1fr}
+    }
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .hero .card{padding:22px}
+    h1{margin:0 0 10px; font-size: clamp(1.7rem, 2.6vw, 2.35rem); letter-spacing:.2px}
+    .lead{color:var(--muted); font-size:1.05rem; margin:0 0 18px}
+    .badges{display:flex; flex-wrap:wrap; gap:10px; margin:12px 0 18px}
+    .badge{
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(17,26,46,.55);
+      font-size:.92rem;
+      color: var(--txt);
+    }
+    .ctaRow{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:10px;
+      padding:12px 14px;
+      border-radius:12px;
+      border:1px solid var(--line);
+      text-decoration:none;
+      font-weight:600;
+      background: rgba(255,255,255,.05);
+      min-width: 190px;
+    }
+    .btn.primary{
+      border-color: rgba(106,166,255,.65);
+      background: linear-gradient(180deg, rgba(106,166,255,.25), rgba(106,166,255,.10));
+    }
+    .btn:hover{transform: translateY(-1px); transition: 120ms ease}
+    .side{
+      padding:18px;
+      display:flex; flex-direction:column; gap:12px;
+    }
+    .side h2{margin:0; font-size:1.1rem}
+    .side p{margin:0; color:var(--muted)}
+    .mini{
+      padding:14px;
+      border-radius:14px;
+      border:1px dashed rgba(255,255,255,.18);
+      background: rgba(15,24,48,.55);
+    }
+    section{margin-top:22px}
+    .grid3{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:14px;
+    }
+    @media (max-width: 900px){
+      .grid3{grid-template-columns:1fr}
+    }
+    .panel{padding:18px}
+    h2{margin:0 0 10px; font-size:1.25rem}
+    ul{margin:10px 0 0; padding-left:18px}
+    li{margin:7px 0; color:var(--muted)}
+    .kpi{
+      display:flex; gap:10px; flex-wrap:wrap; margin-top:12px
+    }
+    .k{
+      flex: 1 1 170px;
+      padding:12px 12px;
+      border:1px solid var(--line);
+      border-radius:14px;
+      background: rgba(17,26,46,.55);
+    }
+    .k strong{display:block; font-size:1.05rem}
+    .k span{color:var(--muted); font-size:.92rem}
+    .pricing{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+    }
+    @media (max-width: 900px){
+      .pricing{grid-template-columns:1fr}
+    }
+    .price{
+      padding:18px;
+      border-radius:var(--radius);
+      border:1px solid var(--line);
+      background: linear-gradient(180deg, rgba(124,240,197,.10), rgba(255,255,255,.03));
+    }
+    .price h3{margin:0 0 6px; font-size:1.1rem}
+    .price .amount{font-size:1.6rem; font-weight:800; letter-spacing:.2px}
+    .price .note{color:var(--muted); margin-top:6px}
+    details{
+      border:1px solid var(--line);
+      border-radius:14px;
+      background: rgba(17,26,46,.45);
+      padding:12px 14px;
+    }
+    details + details{margin-top:10px}
+    summary{cursor:pointer; font-weight:700}
+    .fine{color:var(--muted); font-size:.92rem}
+    footer{
+      border-top:1px solid var(--line);
+      padding:22px 0;
+      color:var(--muted);
+      background: rgba(11,18,32,.7);
+    }
+    .foot{
+      display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap;
+      align-items:flex-start;
+    }
+    .sep{height:1px; background: var(--line); margin:16px 0}
+    .tag{
+      display:inline-flex; gap:8px; align-items:center;
+      padding:7px 10px; border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.04);
+      font-size:.9rem;
+    }
+    .mono{font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace}
+  </style>
+
+  <!-- Données structurées (SEO local service) -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Service",
+    "name":"Réparation et optimisation informatique",
+    "provider":{
+      "@type":"LocalBusiness",
+      "name":"JCGagnon",
+      "url":"https://jcgagnon.ca/"
+    },
+    "areaServed":"Québec, Canada",
+    "serviceType":"Support informatique, réparation PC, optimisation Windows",
+    "description":"Diagnostic, réparation et optimisation de PC/portables : lenteur, instabilité, mises à jour, nettoyage, SSD/RAM, suppression de malware."
+  }
+  </script>
+</head>
+
+<body>
+  <header>
+    <div class="wrap">
+      <div class="nav">
+        <div class="brand">
+          <strong>JCGagnon</strong>
+          <span>Support TI • Optimisation • Sécurité</span>
+        </div>
+        <nav class="navlinks" aria-label="Navigation">
+          <a class="chip" href="index.html">Accueil</a>
+          <a class="chip" href="reparation-optimisation.html" aria-current="page">Réparation & optimisation</a>
+          <a class="chip" href="index.html#services">Services</a>
+          <a class="chip" href="index.html#tarifs">Tarifs</a>
+          <a class="chip" href="index.html#contact">Contact</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <div class="hero">
+        <div class="card">
+          <h1>Réparation & optimisation</h1>
+          <p class="lead">
+            Pour PC et portables (Windows). Diagnostic clair, correctifs durables, et une machine plus rapide et plus stable.
+          </p>
+
+          <div class="badges" aria-label="Points forts">
+            <span class="badge">PC lent / gel / écran bleu</span>
+            <span class="badge">Nettoyage & démarrage rapide</span>
+            <span class="badge">SSD / RAM / pilotes</span>
+            <span class="badge">Suppression malware</span>
+            <span class="badge">Mises à jour & sécurité</span>
+          </div>
+
+          <div class="ctaRow">
+            <a class="btn primary" href="tel:+1-000-000-0000" aria-label="Appeler">
+              📞 Appeler
+            </a>
+            <a class="btn" href="mailto:contact@jcgagnon.ca?subject=Demande%20-%20R%C3%A9paration%20%26%20optimisation" aria-label="Envoyer un courriel">
+              ✉️ Demander un diagnostic
+            </a>
+          </div>
+
+          <div class="sep"></div>
+          <div class="kpi">
+            <div class="k">
+              <strong>Diagnostic pragmatique</strong>
+              <span>On cible la cause (logiciel, disque, RAM, drivers, malware).</span>
+            </div>
+            <div class="k">
+              <strong>Optimisation mesurable</strong>
+              <span>Démarrage, réactivité, stabilité, mises à jour, sécurité.</span>
+            </div>
+            <div class="k">
+              <strong>Conseils simples</strong>
+              <span>Vous gardez le contrôle et évitez que le problème revienne.</span>
+            </div>
+          </div>
+        </div>
+
+        <aside class="card side">
+          <div class="mini">
+            <h2>Quand appeler?</h2>
+            <p>Si l’ordi est lent, plante, chauffe, ou si les mises à jour échouent.</p>
+          </div>
+          <div class="mini">
+            <h2>Avant la visite</h2>
+            <p>Notez les symptômes (quand, depuis quand) et gardez vos mots de passe à portée.</p>
+          </div>
+          <div class="mini">
+            <h2>Option rapide</h2>
+            <p class="fine">Si vous voulez : envoyez le modèle du PC + une photo d’erreur (si applicable) par courriel.</p>
+          </div>
+          <span class="tag">🛡️ Approche: <span class="mono">Diagnostic → Solution → Vérification</span></span>
+        </aside>
+      </div>
+
+      <section class="card panel" id="problemes">
+        <h2>Problèmes fréquents traités</h2>
+        <div class="grid3">
+          <div class="card panel" style="background:rgba(17,26,46,.45)">
+            <h3 style="margin:0 0 8px">Performance</h3>
+            <ul>
+              <li>PC lent au démarrage ou après connexion</li>
+              <li>Disque à 100% / ventilateurs à fond</li>
+              <li>Applications qui ne répondent plus</li>
+              <li>Stockage saturé / nettoyage efficace</li>
+            </ul>
+          </div>
+          <div class="card panel" style="background:rgba(17,26,46,.45)">
+            <h3 style="margin:0 0 8px">Stabilité</h3>
+            <ul>
+              <li>Écran bleu (BSOD), redémarrages</li>
+              <li>Drivers/pilotes problématiques</li>
+              <li>Mises à jour Windows qui échouent</li>
+              <li>Conflits logiciels / démarrage propre</li>
+            </ul>
+          </div>
+          <div class="card panel" style="background:rgba(17,26,46,.45)">
+            <h3 style="margin:0 0 8px">Sécurité</h3>
+            <ul>
+              <li>Pop-ups, adwares, barres d’outils</li>
+              <li>Compte compromis / mots de passe</li>
+              <li>Durcissement de base (pare-feu, MAJ)</li>
+              <li>Sauvegarde locale (selon besoin)</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="card panel" id="inclus">
+        <h2>Ce qui est inclus dans une optimisation “propre”</h2>
+        <ul>
+          <li>État de santé du disque (HDD/SSD), vérification erreurs et intégrité système</li>
+          <li>Nettoyage des programmes au démarrage et services non essentiels</li>
+          <li>Mises à jour Windows et pilotes (selon compatibilité)</li>
+          <li>Scan de sécurité + suppression des indésirables (selon situation)</li>
+          <li>Réglages performance et bonnes pratiques (navigateur, stockage, MAJ)</li>
+          <li>Recommandations matérielles si nécessaire (ex. passer à SSD, ajouter RAM)</li>
+        </ul>
+        <p class="fine" style="margin-top:10px">
+          Note : si le PC a un disque dur mécanique (HDD) et est lent, une migration vers SSD est souvent le meilleur gain “$ / performance”.
+        </p>
+      </section>
+
+      <section class="card panel" id="processus">
+        <h2>Comment ça se passe</h2>
+        <div class="grid3">
+          <div class="card panel" style="background:rgba(17,26,46,.45)">
+            <h3 style="margin:0 0 8px">1) Diagnostic</h3>
+            <p class="fine" style="margin:0">
+              On identifie la cause principale (logiciel, stockage, RAM, surchauffe, malware, configuration).
+            </p>
+          </div>
+          <div class="card panel" style="background:rgba(17,26,46,.45)">
+            <h3 style="margin:0 0 8px">2) Correctifs</h3>
+            <p class="fine" style="margin:0">
+              Nettoyage, mises à jour, corrections système, optimisation, et recommandations si du matériel est en cause.
+            </p>
+          </div>
+          <div class="card panel" style="background:rgba(17,26,46,.45)">
+            <h3 style="margin:0 0 8px">3) Vérification</h3>
+            <p class="fine" style="margin:0">
+              Test de stabilité, démarrage, utilisation normale. Résumé des actions et conseils pour maintenir la performance.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="card panel" id="tarifs">
+        <h2>Tarifs (repères)</h2>
+        <div class="pricing">
+          <div class="price">
+            <h3>Diagnostic & optimisation</h3>
+            <div class="amount">À partir de 80$</div>
+            <div class="note">Inclut diagnostic + optimisations de base (selon complexité).</div>
+            <ul>
+              <li>Nettoyage démarrage</li>
+              <li>Vérifs système</li>
+              <li>Mises à jour (si applicable)</li>
+            </ul>
+          </div>
+          <div class="price" style="background: linear-gradient(180deg, rgba(106,166,255,.18), rgba(255,255,255,.03));">
+            <h3>Réparation / intervention avancée</h3>
+            <div class="amount">Selon le cas</div>
+            <div class="note">Ex. plantages récurrents, drivers, migration SSD, récupération, etc.</div>
+            <ul>
+              <li>Analyse approfondie</li>
+              <li>Plan d’action clair</li>
+              <li>Recommandations durables</li>
+            </ul>
+          </div>
+        </div>
+        <p class="fine" style="margin-top:10px">
+          Astuce : dites-moi si le PC a un <strong>SSD ou HDD</strong>, et si le problème est <strong>récent</strong> ou <strong>progressif</strong>. Ça accélère le diagnostic.
+        </p>
+      </section>
+
+      <section class="card panel" id="faq">
+        <h2>FAQ</h2>
+        <details>
+          <summary>Est-ce que je vais perdre mes fichiers?</summary>
+          <p class="fine">
+            Non, l’objectif est de corriger sans toucher aux données. Si une opération comporte un risque (ex. disque instable),
+            je vous le dis avant et on met en place une sauvegarde appropriée.
+          </p>
+        </details>
+        <details>
+          <summary>Mon PC est lent… est-ce forcément un virus?</summary>
+          <p class="fine">
+            Pas forcément. Les causes les plus fréquentes sont : disque dur (HDD) vieillissant, trop de programmes au démarrage,
+            mises à jour en boucle, manque d’espace, ou pilotes instables. Le diagnostic tranche rapidement.
+          </p>
+        </details>
+        <details>
+          <summary>Ça vaut la peine de “upgrader” (SSD/RAM) ou je dois changer d’ordi?</summary>
+          <p class="fine">
+            Souvent, un SSD + optimisation redonnent une seconde vie à un PC. Si le matériel est trop limité ou défaillant,
+            je vous recommande une option réaliste (réparation vs remplacement) avec un rapport coût/bénéfice.
+          </p>
+        </details>
+        <details>
+          <summary>Faites-vous du dépannage à distance?</summary>
+          <p class="fine">
+            Oui, selon le problème. Certaines interventions (matériel, surchauffe, SSD/RAM) nécessitent une manipulation sur place.
+          </p>
+        </details>
+      </section>
+
+      <section class="card panel" id="cta">
+        <h2>Prêt à accélérer votre PC?</h2>
+        <p class="lead" style="margin:0 0 14px">
+          Décrivez le symptôme (lenteur, gel, écran bleu, MAJ, etc.) et le modèle de votre ordinateur — je vous réponds avec une approche simple et efficace.
+        </p>
+        <div class="ctaRow">
+          <a class="btn primary" href="mailto:contact@jcgagnon.ca?subject=Demande%20-%20R%C3%A9paration%20%26%20optimisation&body=Bonjour%2C%0D%0A%0D%0AType%20d'appareil%20%3A%20(PC%2Fportable)%0D%0AMod%C3%A8le%20%3A%20%0D%0AVersion%20Windows%20%3A%20%0D%0ASympt%C3%B4mes%20%3A%20%0D%0ADepuis%20quand%20%3F%20%0D%0A%0D%0AMerci!">
+            ✉️ Envoyer une demande
+          </a>
+          <a class="btn" href="tel:+1-000-000-0000">📞 Appeler</a>
+        </div>
+        <p class="fine" style="margin-top:10px">
+          Remplacez le téléphone et le courriel par vos coordonnées exactes si nécessaire.
+        </p>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="foot">
+        <div>
+          <strong>JCGagnon</strong>
+          <div class="fine">Support TI • Réparation • Optimisation • Sécurité</div>
+          <div class="fine" style="margin-top:8px">
+            <span class="tag">📍 Service local</span>
+            <span class="tag">🧰 Windows</span>
+            <span class="tag">🔒 Bonnes pratiques</span>
+          </div>
+        </div>
+        <div>
+          <div class="fine"><strong>Contact</strong></div>
+          <div class="fine">Téléphone : <a href="tel:+1-000-000-0000">+1 (000) 000-0000</a></div>
+          <div class="fine">Courriel : <a href="mailto:contact@jcgagnon.ca">contact@jcgagnon.ca</a></div>
+        </div>
+      </div>
+      <div class="sep"></div>
+      <div class="fine">© <span id="y"></span> jcgagnon.ca</div>
+    </div>
+  </footer>
+
+  <script>
+    // année automatique
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
