@@ -216,20 +216,20 @@
       background: rgba(0,0,0,.06);
       border-color: rgba(0,0,0,.14);
     }
+
     /* A11y: focus clavier visible (n'affecte pas la souris) */
-a:focus-visible, button:focus-visible{
-  outline: 3px solid rgba(6,182,212,.85);
-  outline-offset: 3px;
-  border-radius: 14px;
-}
-:root[data-theme="light"] a:focus-visible,
-:root[data-theme="light"] button:focus-visible{
-  outline-color: rgba(109,40,217,.75);
-}
+    a:focus-visible, button:focus-visible{
+      outline: 3px solid rgba(6,182,212,.85);
+      outline-offset: 3px;
+      border-radius: 14px;
+    }
+    :root[data-theme="light"] a:focus-visible,
+    :root[data-theme="light"] button:focus-visible{
+      outline-color: rgba(109,40,217,.75);
+    }
 
-/* Nav mobile: rendre hidden cohérent (n'affecte pas desktop car display:flex !important) */
-nav.links[hidden]{ display:none !important; }
-
+    /* Support de l'attribut hidden (mobile) */
+    nav.links[hidden]{ display:none !important; }
 
     /* ===== Header ===== */
     header{
@@ -533,7 +533,6 @@ nav.links[hidden]{ display:none !important; }
           <a href="#tarifs">Tarifs</a>
           <a href="#contact">Contact</a>
         </nav>
-
       </div>
     </div>
   </header>
@@ -688,69 +687,95 @@ nav.links[hidden]{ display:none !important; }
 
   <script>
     // Year
-    document.getElementById("year").textContent = new Date().getFullYear();
+    (function(){
+      const yearEl = document.getElementById("year");
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
+    })();
 
-    // ===== Mobile menu toggle (robuste) =====
-    const nav = document.getElementById("nav");
-    const menuBtn = document.getElementById("menuBtn");
-    const links = document.getElementById("links");
+    // ===== Mobile menu toggle (robuste + a11y sans casser desktop) =====
+    (function(){
+      const nav = document.getElementById("nav");
+      const menuBtn = document.getElementById("menuBtn");
+      const links = document.getElementById("links");
+      if (!nav || !menuBtn || !links) return;
 
-   const firstLink = links.querySelector("a");
+      const firstLink = links.querySelector("a");
+      const mqDesktop = window.matchMedia("(min-width: 860px)");
 
-function setMenu(open){
-  nav.classList.toggle("navOpen", open);
-  menuBtn.setAttribute("aria-expanded", open ? "true" : "false");
+      function syncNavForViewport(){
+        const isDesktop = mqDesktop.matches;
 
-  // Plus fiable que aria-hidden pour retirer du flux + SR
-  links.hidden = !open;
+        if (isDesktop){
+          // Desktop: menu visible, pas de hidden
+          links.hidden = false;
+          nav.classList.remove("navOpen");
+          menuBtn.setAttribute("aria-expanded", "false");
+          return;
+        }
 
-  // Focus management: améliore l'a11y sans changer l'UI
-  if(open){
-    firstLink?.focus();
-  }else{
-    menuBtn.focus();
-  }
-}
+        // Mobile: fermé par défaut (ou selon l'état navOpen)
+        links.hidden = !nav.classList.contains("navOpen");
+      }
 
-// init a11y state
-links.hidden = true;
+      function setMenu(open){
+        // Sur desktop on force l'état stable
+        if (mqDesktop.matches){
+          links.hidden = false;
+          nav.classList.remove("navOpen");
+          menuBtn.setAttribute("aria-expanded", "false");
+          return;
+        }
 
+        nav.classList.toggle("navOpen", open);
+        menuBtn.setAttribute("aria-expanded", open ? "true" : "false");
+        links.hidden = !open;
 
-    menuBtn.addEventListener("click", () => {
-      const open = !nav.classList.contains("navOpen");
-      setMenu(open);
-    });
+        if (open){
+          firstLink?.focus();
+        } else {
+          menuBtn.focus();
+        }
+      }
 
-    // Fermer le menu quand on clique sur un lien (mobile)
-    links.addEventListener("click", (e) => {
-      const a = e.target.closest("a");
-      if (!a) return;
-      if (window.matchMedia("(min-width: 860px)").matches) return;
-      setMenu(false);
-    });
+      // init
+      syncNavForViewport();
 
-    // Click outside pour fermer
-    document.addEventListener("click", (e) => {
-      if (window.matchMedia("(min-width: 860px)").matches) return;
-      if (!nav.classList.contains("navOpen")) return;
-      if (nav.contains(e.target)) return;
-      setMenu(false);
-    });
+      menuBtn.addEventListener("click", () => {
+        const open = !nav.classList.contains("navOpen");
+        setMenu(open);
+      });
 
-    // ESC pour fermer
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && nav.classList.contains("navOpen")) setMenu(false);
-    });
+      // Fermer le menu quand on clique sur un lien (mobile)
+      links.addEventListener("click", (e) => {
+        const a = e.target.closest("a");
+        if (!a) return;
+        if (mqDesktop.matches) return;
+        setMenu(false);
+      });
 
-    // Si on passe desktop, on remet l'état propre
-    window.addEventListener("resize", () => {
-      if (window.matchMedia("(min-width: 860px)").matches) setMenu(false);
-    });
+      // Click outside pour fermer (mobile)
+      document.addEventListener("click", (e) => {
+        if (mqDesktop.matches) return;
+        if (!nav.classList.contains("navOpen")) return;
+        if (nav.contains(e.target)) return;
+        setMenu(false);
+      });
+
+      // ESC pour fermer (mobile)
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && nav.classList.contains("navOpen") && !mqDesktop.matches) setMenu(false);
+      });
+
+      // Sync au changement de breakpoint
+      mqDesktop.addEventListener?.("change", syncNavForViewport);
+      window.addEventListener("resize", syncNavForViewport); // fallback
+    })();
 
     // ===== Courriel: tenter Outlook puis fallback mailto =====
-    const EMAIL = "jcgagnon@outlook.com";
-    const SUBJECT = "Demande d’aide — réparation ordinateur";
-    const BODY =
+    (function(){
+      const EMAIL = "jcgagnon@outlook.com";
+      const SUBJECT = "Demande d’aide — réparation ordinateur";
+      const BODY =
 `Bonjour JC,
 
 J’aimerais de l’aide pour une réparation ordinateur :
@@ -764,61 +789,70 @@ Détails utiles :
 
 Merci!`;
 
-    const mailLink = document.getElementById("mailLink");
+      const mailLink = document.getElementById("mailLink");
+      if (!mailLink) return;
 
-    const mailtoHref =
-      `mailto:${encodeURIComponent(EMAIL)}?subject=${encodeURIComponent(SUBJECT)}&body=${encodeURIComponent(BODY)}`;
+      const mailtoHref =
+        `mailto:${encodeURIComponent(EMAIL)}?subject=${encodeURIComponent(SUBJECT)}&body=${encodeURIComponent(BODY)}`;
 
-    // Protocole Outlook (si Outlook installé)
-    const outlookHref =
-      `ms-outlook://compose?to=${encodeURIComponent(EMAIL)}&subject=${encodeURIComponent(SUBJECT)}&body=${encodeURIComponent(BODY)}`;
+      const outlookHref =
+        `ms-outlook://compose?to=${encodeURIComponent(EMAIL)}&subject=${encodeURIComponent(SUBJECT)}&body=${encodeURIComponent(BODY)}`;
 
-    // 1) fallback correct si JS bloqué
-    mailLink.href = mailtoHref;
+      // fallback correct si JS bloqué
+      mailLink.href = mailtoHref;
 
-    // 2) tenter Outlook au clic, sinon mailto
-    mailLink.addEventListener("click", (e) => {
-      e.preventDefault();
-      window.location.href = outlookHref;
-      setTimeout(() => {
-        window.location.href = mailtoHref;
-      }, 450);
-    });
+      // tenter Outlook au clic, sinon mailto
+      mailLink.addEventListener("click", (e) => {
+        e.preventDefault();
+        window.location.href = outlookHref;
+        setTimeout(() => {
+          window.location.href = mailtoHref;
+        }, 450);
+      });
+    })();
 
     // ===== Copy + Share =====
-    const info =
+    (function(){
+      const copyBtn = document.getElementById("copyBtn");
+      const shareBtn = document.getElementById("shareBtn");
+      if (!copyBtn || !shareBtn) return;
+
+      const EMAIL = "jcgagnon@outlook.com";
+      const info =
 `JC Gagnon Informatique
 Téléphone: (514) 834-0083
 Site: ${location.origin}
 Courriel: ${EMAIL}
 Zones: Montréal & région de Joliette (QC)`;
 
-    async function copyText(text){
-      try{
-        await navigator.clipboard.writeText(text);
-        alert("Copié ✅");
-      }catch(e){
-        const ta = document.createElement("textarea");
-        ta.value = text;
-        document.body.appendChild(ta);
-        ta.select();
-        document.execCommand("copy");
-        ta.remove();
-        alert("Copié ✅");
-      }
-    }
-
-    document.getElementById("copyBtn").addEventListener("click", ()=>copyText(info));
-    document.getElementById("shareBtn").addEventListener("click", async ()=>{
-      const url = location.origin;
-      if(navigator.share){
+      async function copyText(text){
         try{
-          await navigator.share({ title: document.title, text: "JC Gagnon Informatique — réparation ordinateur", url });
-        }catch(e){}
-      }else{
-        copyText("JC Gagnon Informatique — réparation ordinateur — " + url);
+          await navigator.clipboard.writeText(text);
+          alert("Copié ✅");
+        }catch(e){
+          const ta = document.createElement("textarea");
+          ta.value = text;
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand("copy");
+          ta.remove();
+          alert("Copié ✅");
+        }
       }
-    });
+
+      copyBtn.addEventListener("click", ()=>copyText(info));
+
+      shareBtn.addEventListener("click", async ()=>{
+        const url = location.origin;
+        if(navigator.share){
+          try{
+            await navigator.share({ title: document.title, text: "JC Gagnon Informatique — réparation ordinateur", url });
+          }catch(e){}
+        }else{
+          copyText("JC Gagnon Informatique — réparation ordinateur — " + url);
+        }
+      });
+    })();
   </script>
 </body>
 </html>
