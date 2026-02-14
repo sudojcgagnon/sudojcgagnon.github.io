@@ -13,10 +13,18 @@
 
   <script>
     // Applique le thème le plus tôt possible (évite le flash)
+    // Priorité: choix utilisateur (localStorage) > meta site-theme > défaut dark
     (function () {
       const meta = document.querySelector('meta[name="site-theme"]');
       const forced = meta && meta.content ? meta.content.trim().toLowerCase() : "";
-      const theme = (forced === "light" || forced === "dark") ? forced : "dark";
+
+      const saved = (localStorage.getItem("theme") || "").toLowerCase();
+      const validSaved = (saved === "light" || saved === "dark") ? saved : "";
+
+      let theme = "dark";
+      if (validSaved) theme = validSaved;
+      else if (forced === "light" || forced === "dark") theme = forced;
+
       document.documentElement.setAttribute("data-theme", theme);
 
       const themeColor = document.querySelector('meta[name="theme-color"]');
@@ -167,26 +175,34 @@
 
     *{ box-sizing:border-box; }
     html,body{ height:100%; }
+
+    /* ===== Fond (glow uniforme) ===== */
     body{
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
       color:var(--text);
-      background:
-        radial-gradient(900px 600px at 20% 10%, rgba(124,58,237,.22), transparent 60%),
-        radial-gradient(900px 600px at 80% 30%, rgba(6,182,212,.20), transparent 55%),
-        radial-gradient(900px 600px at 55% 92%, rgba(34,197,94,.14), transparent 55%),
-        var(--bg);
+      background: var(--bg); /* glow déplacé dans ::before */
       overflow-x:hidden;
       -webkit-font-smoothing: antialiased;
       text-rendering: optimizeLegibility;
     }
-
-    :root[data-theme="light"] body{
+    body::before{
+      content:"";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+      opacity: .95;
+      background:
+        radial-gradient(900px 600px at 20% 10%, rgba(124,58,237,.22), transparent 60%),
+        radial-gradient(900px 600px at 80% 30%, rgba(6,182,212,.20), transparent 55%),
+        radial-gradient(900px 600px at 55% 92%, rgba(34,197,94,.14), transparent 55%);
+    }
+    :root[data-theme="light"] body::before{
       background:
         radial-gradient(900px 600px at 20% 10%, rgba(109,40,217,.12), transparent 60%),
         radial-gradient(900px 600px at 80% 30%, rgba(8,145,178,.10), transparent 55%),
-        radial-gradient(900px 600px at 55% 92%, rgba(22,163,74,.08), transparent 55%),
-        var(--bg);
+        radial-gradient(900px 600px at 55% 92%, rgba(22,163,74,.08), transparent 55%);
     }
 
     a{ color:inherit; text-decoration:none; }
@@ -267,11 +283,15 @@
       padding:10px 12px;
       font-weight: 800;
       cursor:pointer;
+      white-space: nowrap;
     }
     :root[data-theme="light"] .menuBtn{
       border-color: rgba(0,0,0,.12);
       background: rgba(0,0,0,.04);
     }
+
+    /* petit groupe pour aligner Menu + Thème sans casser */
+    .navBtns{ display:flex; gap:10px; align-items:center; }
 
     nav.links{
       display:none;
@@ -294,7 +314,7 @@
     .navOpen nav.links{ display:flex; }
 
     @media (min-width: 860px){
-      .menuBtn{ display:none; }
+      #menuBtn{ display:none; } /* seulement le bouton menu */
       nav.links{
         display:flex !important;
         flex-direction:row;
@@ -320,13 +340,29 @@
     /* ===== Common UI ===== */
     .card{
       border:1px solid rgba(255,255,255,.12);
-      background: linear-gradient(135deg, rgba(255,255,255,.10), rgba(255,255,255,.06));
+      background: linear-gradient(135deg,
+        rgba(255,255,255,.10),
+        rgba(255,255,255,.06)
+      );
       border-radius: var(--r);
       box-shadow: var(--shadow);
     }
     :root[data-theme="light"] .card{
       border-color: rgba(0,0,0,.10);
       background: linear-gradient(135deg, rgba(255,255,255,.92), rgba(255,255,255,.70));
+    }
+
+    /* Harmoniser les rectangles (tiles/rows/mini) avec les cartes */
+    .tile, .row, .mini{
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      border-radius: 16px;
+    }
+    :root[data-theme="light"] .tile,
+    :root[data-theme="light"] .row,
+    :root[data-theme="light"] .mini{
+      border-color: rgba(0,0,0,.10);
+      background: rgba(0,0,0,.03);
     }
 
     .btn{
@@ -412,16 +448,7 @@
     }
 
     .heroRight{ padding: 16px; display:grid; gap:10px; }
-    .mini{
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(0,0,0,.18);
-      border-radius: 16px;
-      padding: 12px;
-    }
-    :root[data-theme="light"] .mini{
-      background: rgba(255,255,255,.70);
-      border-color: rgba(0,0,0,.10);
-    }
+    .mini{ padding: 12px; }
     .mini .t{ font-size:12px; color: rgba(255,255,255,.65); }
     :root[data-theme="light"] .mini .t{ color: rgba(10,12,18,.62); }
     .mini .v{ margin-top:6px; font-weight: 900; letter-spacing:-.02em; }
@@ -451,16 +478,7 @@
       .grid{ grid-template-columns: 1fr 1fr 1fr; }
     }
 
-    .tile{
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(0,0,0,.18);
-      border-radius: 16px;
-      padding: 14px;
-    }
-    :root[data-theme="light"] .tile{
-      background: rgba(255,255,255,.70);
-      border-color: rgba(0,0,0,.10);
-    }
+    .tile{ padding: 14px; }
     .tile h3{ margin: 8px 0 6px; font-size: 15px; }
     .tile p{ margin:0; color: var(--muted); font-size: 13.5px; line-height:1.6; }
 
@@ -478,13 +496,6 @@
       flex-direction:column;
       gap:6px;
       padding: 12px;
-      border-radius: 16px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(0,0,0,.18);
-    }
-    :root[data-theme="light"] .row{
-      background: rgba(255,255,255,.70);
-      border-color: rgba(0,0,0,.10);
     }
     .row strong{ font-size:14px; }
     .row span{ color: var(--muted); font-size: 13px; }
@@ -518,9 +529,15 @@
           <span>JC Gagnon Informatique</span>
         </a>
 
-        <button class="menuBtn" id="menuBtn" type="button" aria-expanded="false" aria-controls="links">
-          Menu ☰
-        </button>
+        <div class="navBtns">
+          <button class="menuBtn" id="menuBtn" type="button" aria-expanded="false" aria-controls="links">
+            Menu ☰
+          </button>
+
+          <button class="menuBtn" id="themeBtn" type="button" aria-label="Basculer le thème">
+            🌙
+          </button>
+        </div>
 
         <nav class="links" id="links" aria-label="Navigation">
           <a href="/a-propos.html">À propos</a>
@@ -746,6 +763,30 @@
       }
       mqDesktop.addEventListener?.("change", syncOnResize);
       window.addEventListener("resize", syncOnResize);
+    })();
+
+    // ===== Toggle thème (sombre/clair) =====
+    (function(){
+      const btn = document.getElementById("themeBtn");
+      if(!btn) return;
+
+      function applyTheme(theme){
+        document.documentElement.setAttribute("data-theme", theme);
+        localStorage.setItem("theme", theme);
+
+        const themeColor = document.querySelector('meta[name="theme-color"]');
+        if (themeColor) themeColor.setAttribute("content", theme === "light" ? "#F6F7FB" : "#070A12");
+
+        btn.textContent = theme === "light" ? "☀️" : "🌙";
+      }
+
+      const current = document.documentElement.getAttribute("data-theme") || "dark";
+      btn.textContent = current === "light" ? "☀️" : "🌙";
+
+      btn.addEventListener("click", () => {
+        const now = document.documentElement.getAttribute("data-theme") === "light" ? "light" : "dark";
+        applyTheme(now === "light" ? "dark" : "light");
+      });
     })();
 
     // ===== Courriel: tenter Outlook puis fallback mailto =====
