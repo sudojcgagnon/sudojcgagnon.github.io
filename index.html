@@ -216,6 +216,20 @@
       background: rgba(0,0,0,.06);
       border-color: rgba(0,0,0,.14);
     }
+    /* A11y: focus clavier visible (n'affecte pas la souris) */
+a:focus-visible, button:focus-visible{
+  outline: 3px solid rgba(6,182,212,.85);
+  outline-offset: 3px;
+  border-radius: 14px;
+}
+:root[data-theme="light"] a:focus-visible,
+:root[data-theme="light"] button:focus-visible{
+  outline-color: rgba(109,40,217,.75);
+}
+
+/* Nav mobile: rendre hidden cohérent (n'affecte pas desktop car display:flex !important) */
+nav.links[hidden]{ display:none !important; }
+
 
     /* ===== Header ===== */
     header{
@@ -681,14 +695,26 @@
     const menuBtn = document.getElementById("menuBtn");
     const links = document.getElementById("links");
 
-    function setMenu(open){
-      nav.classList.toggle("navOpen", open);
-      menuBtn.setAttribute("aria-expanded", open ? "true" : "false");
-      links.setAttribute("aria-hidden", open ? "false" : "true");
-    }
+   const firstLink = links.querySelector("a");
 
-    // init a11y state
-    links.setAttribute("aria-hidden", "true");
+function setMenu(open){
+  nav.classList.toggle("navOpen", open);
+  menuBtn.setAttribute("aria-expanded", open ? "true" : "false");
+
+  // Plus fiable que aria-hidden pour retirer du flux + SR
+  links.hidden = !open;
+
+  // Focus management: améliore l'a11y sans changer l'UI
+  if(open){
+    firstLink?.focus();
+  }else{
+    menuBtn.focus();
+  }
+}
+
+// init a11y state
+links.hidden = true;
+
 
     menuBtn.addEventListener("click", () => {
       const open = !nav.classList.contains("navOpen");
