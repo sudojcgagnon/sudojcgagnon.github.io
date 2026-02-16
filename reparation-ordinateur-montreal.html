@@ -42,100 +42,305 @@
   }
   </script>
 
-  <link rel="stylesheet" href="index.html">
+  <!-- CSS (interne pour que tout fonctionne tout de suite) -->
+  <style>
+    :root{
+      --bg:#070a12;
+      --panel:#0d111c;
+      --border:#222;
+      --text:#ffffff;
+      --muted:#c9c9c9;
+      --muted2:#9aa0aa;
+      --primary:#7c3aed;
+      --accent:#06b6d4;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+    *{ box-sizing:border-box; }
+    html,body{ height:100%; }
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      line-height:1.6;
+    }
+    a{ color:inherit; }
+
+    /* Layout */
+    .wrap{ max-width:1100px; margin:auto; padding:24px; }
+
+    /* Header / Nav */
+    header{
+      position:sticky;
+      top:0;
+      z-index:50;
+      background:rgba(13,17,28,.88);
+      backdrop-filter:saturate(180%) blur(10px);
+      border-bottom:1px solid var(--border);
+    }
+    .nav{
+      max-width:1100px;
+      margin:auto;
+      padding:14px 24px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      font-weight:800;
+      letter-spacing:.2px;
+      text-decoration:none;
+      white-space:nowrap;
+    }
+    .brand-badge{
+      width:34px; height:34px;
+      border-radius:10px;
+      background:linear-gradient(135deg,var(--primary),#4f46e5);
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      box-shadow: var(--shadow);
+      font-weight:900;
+    }
+    nav[aria-label] .links{
+      display:flex;
+      align-items:center;
+      gap:18px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    .links a{
+      text-decoration:none;
+      color:var(--muted);
+      font-size:15px;
+      padding:8px 10px;
+      border-radius:10px;
+      transition: .15s ease;
+    }
+    .links a:hover{ color:#fff; background:rgba(255,255,255,.06); }
+    .links a.active{ color:#fff; background:rgba(124,58,237,.18); border:1px solid rgba(124,58,237,.35); }
+
+    .nav-cta{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+
+    /* Buttons */
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:12px 14px;
+      border-radius:12px;
+      text-decoration:none;
+      font-weight:800;
+      border:1px solid transparent;
+      box-shadow: 0 8px 24px rgba(0,0,0,.25);
+      transition: transform .12s ease, filter .12s ease;
+      white-space:nowrap;
+    }
+    .btn:hover{ transform: translateY(-1px); filter: brightness(1.05); }
+    .btn-primary{ background:var(--primary); color:#fff; }
+    .btn-accent{ background:var(--accent); color:#03131a; }
+    .btn-ghost{ background:rgba(255,255,255,.06); color:#fff; border-color:rgba(255,255,255,.12); box-shadow:none; }
+
+    /* Hero */
+    .hero{
+      padding:28px 0 8px;
+    }
+    h1{
+      font-size: clamp(30px, 4vw, 44px);
+      line-height:1.15;
+      margin:0 0 10px 0;
+      letter-spacing:-.6px;
+    }
+    .lead{
+      font-size:18px;
+      color:var(--muted);
+      margin:0 0 18px 0;
+      max-width: 70ch;
+    }
+    .cta-row{ display:flex; gap:12px; flex-wrap:wrap; margin:18px 0 6px; }
+
+    /* Sections */
+    .card{
+      background:rgba(255,255,255,.03);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:18px;
+      padding:18px;
+      box-shadow: var(--shadow);
+    }
+    h2{ margin:0 0 10px 0; font-size:24px; letter-spacing:-.2px; }
+    h3{ margin:18px 0 6px 0; font-size:18px; }
+    .muted{ color:var(--muted2); }
+
+    hr{
+      border:none;
+      border-top:1px solid var(--border);
+      margin:26px 0;
+    }
+    ul{ margin:10px 0 0 18px; color:var(--muted); }
+    li{ margin:6px 0; }
+
+    /* Footer */
+    footer{
+      border-top:1px solid var(--border);
+      margin-top:34px;
+      padding:22px 0;
+      color:#888;
+      font-size:14px;
+    }
+    .footer-grid{
+      display:flex;
+      gap:16px;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+
+    /* Mobile */
+    @media (max-width: 780px){
+      .nav{ padding:12px 16px; }
+      .wrap{ padding:18px 16px; }
+      nav[aria-label] .links{ gap:8px; }
+      .links a{ padding:8px 8px; }
+      .brand-text{ display:none; } /* optionnel: réduit la largeur */
+    }
+  </style>
 </head>
 
-<body style="background:#070a12;color:#fff;font-family:system-ui,Segoe UI,Roboto,Arial;padding:0;margin:0;line-height:1.6;">
+<body>
 
-  <div style="max-width:1100px;margin:auto;padding:24px;">
-
-    <h1 style="font-size:40px;margin-bottom:10px;">
-      Réparation ordinateur à Montréal
-    </h1>
-
-    <p style="font-size:18px;color:#ccc;">
-      Service professionnel de <strong>réparation ordinateur à Montréal</strong> pour particuliers, travailleurs autonomes et PME.
-      Diagnostic clair, solution durable, explication simple.
-    </p>
-
-    <div style="margin:20px 0;">
-      <a href="tel:+15148340083" style="background:#7c3aed;padding:14px 18px;border-radius:10px;color:#fff;text-decoration:none;font-weight:bold;margin-right:10px;">
-        📞 Appeler (514) 834-0083
+  <!-- ===== NAVIGATION (menu manquant) ===== -->
+  <header>
+    <div class="nav">
+      <a class="brand" href="/" aria-label="Accueil JC Gagnon Informatique">
+        <span class="brand-badge">JC</span>
+        <span class="brand-text">JC Gagnon Informatique</span>
       </a>
-      <a href="/#contact" style="background:#06b6d4;padding:14px 18px;border-radius:10px;color:#fff;text-decoration:none;font-weight:bold;">
-        📩 Demander une soumission
-      </a>
+
+      <nav aria-label="Navigation principale">
+        <div class="links">
+          <a href="/" >Accueil</a>
+          <a href="/services.html">Services</a>
+          <a class="active" href="/reparation-ordinateur-montreal.html">Réparation</a>
+          <a href="/#contact">Contact</a>
+        </div>
+      </nav>
+
+      <div class="nav-cta">
+        <a class="btn btn-ghost" href="tel:+15148340083">📞 (514) 834-0083</a>
+        <a class="btn btn-accent" href="/#contact">📩 Soumission</a>
+      </div>
     </div>
+  </header>
 
-    <hr style="border-color:#222;margin:30px 0;">
+  <main class="wrap">
 
-    <h2>Services de réparation ordinateur à Montréal</h2>
+    <section class="hero">
+      <h1>Réparation ordinateur à Montréal</h1>
 
-    <ul>
-      <li>Ordinateur lent ou instable</li>
-      <li>Écran bleu (BSOD)</li>
-      <li>Réinstallation Windows</li>
-      <li>Suppression de virus et logiciels malveillants</li>
-      <li>Mise à niveau SSD ou RAM</li>
-      <li>Récupération de données</li>
-      <li>Problèmes réseau et Wi-Fi</li>
-    </ul>
+      <p class="lead">
+        Service professionnel de <strong>réparation ordinateur à Montréal</strong> pour particuliers, travailleurs autonomes et PME.
+        Diagnostic clair, solution durable, explication simple.
+      </p>
 
-    <hr style="border-color:#222;margin:30px 0;">
+      <div class="cta-row">
+        <a class="btn btn-primary" href="tel:+15148340083">📞 Appeler (514) 834-0083</a>
+        <a class="btn btn-accent" href="/#contact">📩 Demander une soumission</a>
+      </div>
 
-    <h2>Dépannage PC et optimisation Windows</h2>
+      <p class="muted" style="margin:10px 0 0;">
+        Sur place ou à distance • Montréal et environs
+      </p>
+    </section>
 
-    <p>
-      Un ordinateur lent n’est pas normal. La plupart des problèmes proviennent
-      d’une mauvaise configuration, d’un disque dur vieillissant ou d’un excès de logiciels.
-      Une optimisation professionnelle peut souvent doubler la performance.
-    </p>
+    <hr>
 
-    <p>
-      Chaque intervention commence par un diagnostic précis.
-      Vous comprenez ce qui cause le problème avant d’autoriser la réparation.
-    </p>
+    <section class="card" id="services">
+      <h2>Services de réparation ordinateur à Montréal</h2>
+      <ul>
+        <li>Ordinateur lent ou instable</li>
+        <li>Écran bleu (BSOD)</li>
+        <li>Réinstallation Windows</li>
+        <li>Suppression de virus et logiciels malveillants</li>
+        <li>Mise à niveau SSD ou RAM</li>
+        <li>Récupération de données</li>
+        <li>Problèmes réseau et Wi-Fi</li>
+      </ul>
+    </section>
 
-    <hr style="border-color:#222;margin:30px 0;">
+    <hr>
 
-    <h2>Pourquoi choisir JC Gagnon Informatique à Montréal ?</h2>
+    <section class="card">
+      <h2>Dépannage PC et optimisation Windows</h2>
+      <p>
+        Un ordinateur lent n’est pas normal. La plupart des problèmes proviennent
+        d’une mauvaise configuration, d’un disque dur vieillissant ou d’un excès de logiciels.
+        Une optimisation professionnelle peut souvent améliorer fortement la performance.
+      </p>
 
-    <ul>
-      <li>Intervention sur place ou à distance</li>
-      <li>Tarification transparente</li>
-      <li>Approche pédagogique</li>
-      <li>Solutions durables (pas de correctifs temporaires)</li>
-      <li>Prévention et sécurité intégrées</li>
-    </ul>
+      <p>
+        Chaque intervention commence par un diagnostic précis.
+        Vous comprenez ce qui cause le problème avant d’autoriser la réparation.
+      </p>
+    </section>
 
-    <hr style="border-color:#222;margin:30px 0;">
+    <hr>
 
-    <h2>FAQ – Réparation ordinateur Montréal</h2>
+    <section class="card">
+      <h2>Pourquoi choisir JC Gagnon Informatique à Montréal&nbsp;?</h2>
+      <ul>
+        <li>Intervention sur place ou à distance</li>
+        <li>Tarification transparente</li>
+        <li>Approche pédagogique</li>
+        <li>Solutions durables (pas de correctifs temporaires)</li>
+        <li>Prévention et sécurité intégrées</li>
+      </ul>
+    </section>
 
-    <h3>Combien coûte une réparation ordinateur ?</h3>
-    <p>Le diagnostic débute à 30 $. Le coût total dépend du problème et des pièces nécessaires.</p>
+    <hr>
 
-    <h3>Offrez-vous le service à domicile à Montréal ?</h3>
-    <p>Oui, selon le secteur et le type d’intervention. Assistance à distance disponible rapidement.</p>
+    <section class="card" id="faq">
+      <h2>FAQ – Réparation ordinateur Montréal</h2>
 
-    <h3>Réparez-vous tous les types d’ordinateurs ?</h3>
-    <p>PC Windows principalement. Certains services Mac selon le cas.</p>
+      <h3>Combien coûte une réparation ordinateur&nbsp;?</h3>
+      <p>Le diagnostic débute à 30&nbsp;$. Le coût total dépend du problème et des pièces nécessaires.</p>
 
-    <hr style="border-color:#222;margin:30px 0;">
+      <h3>Offrez-vous le service à domicile à Montréal&nbsp;?</h3>
+      <p>Oui, selon le secteur et le type d’intervention. Assistance à distance disponible rapidement.</p>
 
-    <h2>Contact – Réparation ordinateur Montréal</h2>
+      <h3>Réparez-vous tous les types d’ordinateurs&nbsp;?</h3>
+      <p>PC Windows principalement. Certains services Mac selon le cas.</p>
+    </section>
 
-    <p>
-      📍 Service offert à Montréal et environs<br>
-      📞 (514) 834-0083<br>
-      ✉️ jcgagnon@outlook.com
-    </p>
+    <hr>
 
-    <p style="margin-top:40px;color:#888;font-size:14px;">
-      © 2026 JC Gagnon Informatique – Réparation ordinateur Montréal
-    </p>
+    <section class="card" id="contact">
+      <h2>Contact – Réparation ordinateur Montréal</h2>
 
-  </div>
+      <p>
+        📍 Service offert à Montréal et environs<br>
+        📞 <a href="tel:+15148340083">(514) 834-0083</a><br>
+        ✉️ <a href="mailto:jcgagnon@outlook.com">jcgagnon@outlook.com</a>
+      </p>
+    </section>
+
+    <footer>
+      <div class="footer-grid">
+        <div>© 2026 JC Gagnon Informatique – Réparation ordinateur Montréal</div>
+        <div class="muted">Windows • Réseau • Sécurité • Optimisation</div>
+      </div>
+    </footer>
+
+  </main>
 
 </body>
 </html>
