@@ -1,346 +1,975 @@
 <!doctype html>
 <html lang="fr-CA">
 <head>
+  <script>
+    if (window.location.pathname.endsWith("/index.html")) {
+      window.location.replace("https://www.jcgagnon.ca/");
+    }
+  </script>
+
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Choix du thème (dans le head) : "dark" ou "light" -->
+  <meta name="site-theme" content="dark" />
+  <meta name="color-scheme" content="dark light" />
   <meta name="theme-color" content="#070A12" />
 
-  <!-- ===== SEO LOCAL ===== -->
-  <title>Réparation ordinateur Montréal | Dépannage PC & Windows | JC Gagnon</title>
-  <meta name="description" content="Réparation ordinateur à Montréal : PC lent, écran bleu, virus, optimisation Windows, mise à niveau SSD/RAM. Service professionnel sur place ou à distance." />
-  <meta name="robots" content="index,follow" />
-  <link rel="canonical" href="https://www.jcgagnon.ca/reparation-ordinateur-montreal.html" />
+  <script>
+    // Applique le thème le plus tôt possible (évite le flash)
+    // Priorité: choix utilisateur (localStorage) > meta site-theme > défaut dark
+    (function () {
+      const meta = document.querySelector('meta[name="site-theme"]');
+      const forced = meta && meta.content ? meta.content.trim().toLowerCase() : "";
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="Réparation ordinateur Montréal | JC Gagnon Informatique" />
-  <meta property="og:description" content="Dépannage et réparation ordinateur à Montréal. Service rapide, fiable et professionnel." />
+      const saved = (localStorage.getItem("theme") || "").toLowerCase();
+      const validSaved = (saved === "light" || saved === "dark") ? saved : "";
+
+      let theme = "dark";
+      if (validSaved) theme = validSaved;
+      else if (forced === "light" || forced === "dark") theme = forced;
+
+      document.documentElement.setAttribute("data-theme", theme);
+
+      // Stabilise le rendu UA (scrollbars/inputs)
+      document.documentElement.style.colorScheme = theme;
+
+      const themeColor = document.querySelector('meta[name="theme-color"]');
+      if (themeColor) themeColor.setAttribute("content", theme === "light" ? "#F6F7FB" : "#070A12");
+    })();
+  </script>
+
+  <!-- ===== SEO (local + CTR) ===== -->
+  <title>Réparation d’ordinateur à Montréal & Joliette | JC Gagnon Informatique</title>
+  <meta name="description" content="Réparation d’ordinateur à Montréal et Joliette : dépannage PC/Windows, optimisation, suppression de virus, sécurité, sauvegardes et réseaux. Sur place ou à distance." />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://www.jcgagnon.ca/" />
+
+  <!-- Indice (le fichier doit exister à la racine) -->
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+
+  <!-- ===== Open Graph / Social ===== -->
+  <meta property="og:locale" content="fr_CA" />
+  <meta property="og:title" content="Réparation d’ordinateur Montréal & Joliette | JC Gagnon Informatique" />
+  <meta property="og:description" content="Dépannage PC/Windows, optimisation, sécurité, sauvegardes et réseaux. Sur place ou à distance." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://www.jcgagnon.ca/reparation-ordinateur-montreal.html" />
+  <meta property="og:url" content="https://www.jcgagnon.ca/" />
   <meta property="og:image" content="https://www.jcgagnon.ca/og-image.png" />
 
-  <!-- ===== Schema Local SEO ===== -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Réparation d’ordinateur Montréal & Joliette | JC Gagnon Informatique" />
+  <meta name="twitter:description" content="Dépannage PC/Windows, optimisation, sécurité, sauvegardes et réseaux. Sur place ou à distance." />
+  <meta name="twitter:image" content="https://www.jcgagnon.ca/og-image.png" />
+
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <!-- ===== Schema.org (JSON-LD) ===== -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Service",
-    "name": "Réparation ordinateur à Montréal",
-    "serviceType": "Réparation ordinateur / Dépannage PC",
-    "provider": {
-      "@type": "LocalBusiness",
-      "name": "JC Gagnon Informatique",
-      "telephone": "+1-514-834-0083",
-      "areaServed": {
-        "@type": "City",
-        "name": "Montréal",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://www.jcgagnon.ca/#website",
+        "url": "https://www.jcgagnon.ca/",
+        "name": "JC Gagnon Informatique",
+        "inLanguage": "fr-CA"
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://www.jcgagnon.ca/#webpage",
+        "url": "https://www.jcgagnon.ca/",
+        "name": "Réparation d’ordinateur à Montréal & Joliette | JC Gagnon Informatique",
+        "isPartOf": { "@id": "https://www.jcgagnon.ca/#website" },
+        "inLanguage": "fr-CA",
+        "about": { "@id": "https://www.jcgagnon.ca/#business" },
+        "primaryImageOfPage": { "@id": "https://www.jcgagnon.ca/#ogimage" }
+      },
+      {
+        "@type": "ImageObject",
+        "@id": "https://www.jcgagnon.ca/#ogimage",
+        "url": "https://www.jcgagnon.ca/og-image.png"
+      },
+      {
+        "@type": ["LocalBusiness", "ProfessionalService"],
+        "@id": "https://www.jcgagnon.ca/#business",
+        "name": "JC Gagnon Informatique",
+        "url": "https://www.jcgagnon.ca/",
+        "image": "https://www.jcgagnon.ca/og-image.png",
+        "description": "Réparation d’ordinateur, dépannage PC/Windows, optimisation, sécurité, sauvegardes et réseaux. Simple. Fiable. Efficace. Montréal & Joliette.",
+        "telephone": "+1-514-834-0083",
+        "email": "jcgagnon@outlook.com",
         "address": {
           "@type": "PostalAddress",
           "addressRegion": "QC",
           "addressCountry": "CA"
+        },
+        "serviceArea": {
+          "@type": "AdministrativeArea",
+          "name": "Montréal, QC et région de Joliette, QC"
+        },
+        "areaServed": [
+          { "@type": "City", "name": "Montréal", "address": { "@type": "PostalAddress", "addressRegion": "QC", "addressCountry": "CA" } },
+          { "@type": "City", "name": "Joliette", "address": { "@type": "PostalAddress", "addressRegion": "QC", "addressCountry": "CA" } }
+        ],
+        "priceRange": "$$",
+        "currenciesAccepted": "CAD",
+        "paymentAccepted": ["Cash","Interac","Credit Card"],
+        "availableLanguage": ["fr-CA","en-CA"],
+        "sameAs": ["https://www.jcgagnon.ca/"],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Services",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "name": "Réparation d’ordinateur & optimisation",
+              "description": "PC lent, instable, écran bleu, mise à niveau (SSD/RAM), réinstallation Windows, optimisation performance.",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Réparation d’ordinateur & optimisation",
+                "serviceType": "Réparation d’ordinateur / Support informatique",
+                "provider": { "@id": "https://www.jcgagnon.ca/#business" }
+              }
+            },
+            {
+              "@type": "Offer",
+              "name": "Réparation d’ordinateur à Joliette",
+              "description": "Dépannage PC/Windows à Joliette : lenteur, virus, instabilité, mise à niveau SSD/RAM, sauvegardes et prévention.",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Réparation d’ordinateur à Joliette",
+                "serviceType": "Réparation d’ordinateur / Support informatique",
+                "provider": { "@id": "https://www.jcgagnon.ca/#business" },
+                "url": "https://www.jcgagnon.ca/reparation-ordinateur-joliette.html"
+              }
+            },
+            {
+              "@type": "Offer",
+              "name": "Sécurité & sauvegardes",
+              "description": "Suppression de virus, MFA, durcissement, sauvegarde automatique, récupération — réduction du risque pour vrai.",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Sécurité & sauvegardes",
+                "serviceType": "Cybersécurité et sauvegarde",
+                "provider": { "@id": "https://www.jcgagnon.ca/#business" }
+              }
+            },
+            {
+              "@type": "Offer",
+              "name": "Réseaux & sites web",
+              "description": "Wi-Fi fiable, configuration réseau, site vitrine rapide (domaine, SSL, mise en ligne).",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Réseaux & sites web",
+                "serviceType": "Réseautique et web",
+                "provider": { "@id": "https://www.jcgagnon.ca/#business" }
+              }
+            }
+          ]
         }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://www.jcgagnon.ca/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Est-ce que vous offrez la réparation d’ordinateur à domicile à Montréal et Joliette?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Oui. Je peux intervenir sur place à Montréal et dans la région de Joliette, ou à distance selon le type de problème."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Avez-vous une page dédiée à la réparation d’ordinateur à Joliette?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Oui. Consultez la page Réparation ordinateur Joliette pour les services, les cas fréquents et les options sur place ou à distance."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Faites-vous de l’assistance à distance?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Oui. L’assistance à distance permet des diagnostics rapides, des correctifs Windows, de la configuration et des conseils de sécurité."
+            }
+          }
+        ]
       }
-    }
+    ]
   }
   </script>
 
-  <!-- CSS (interne pour que tout fonctionne tout de suite) -->
+  <!-- ===== Styles (mobile-first) ===== -->
   <style>
     :root{
       --bg:#070a12;
-      --panel:#0d111c;
-      --border:#222;
-      --text:#ffffff;
-      --muted:#c9c9c9;
-      --muted2:#9aa0aa;
-      --primary:#7c3aed;
-      --accent:#06b6d4;
-      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --panel: rgba(255,255,255,.055);
+      --panel2: rgba(255,255,255,.085);
+      --line: rgba(255,255,255,.10);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.72);
+      --a:#7c3aed;
+      --b:#06b6d4;
+      --c:#22c55e;
+      --r: 18px;
+      --shadow: 0 20px 80px rgba(0,0,0,.55);
+      --max: 1120px;
+    }
+    :root[data-theme="light"]{
+      --bg:#F6F7FB;
+      --panel: rgba(0,0,0,.06);
+      --panel2: rgba(0,0,0,.10);
+      --line: rgba(0,0,0,.12);
+      --text: rgba(10,12,18,.92);
+      --muted: rgba(10,12,18,.70);
+      --a:#6d28d9;
+      --b:#0891b2;
+      --c:#16a34a;
+      --shadow: 0 18px 70px rgba(0,0,0,.16);
     }
     *{ box-sizing:border-box; }
     html,body{ height:100%; }
+    html{ background: var(--bg); }
     body{
       margin:0;
-      background:var(--bg);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
       color:var(--text);
-      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      line-height:1.6;
+      background: var(--bg);
+      overflow-x:hidden;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
     }
-    a{ color:inherit; }
+    body::before{
+      content:"";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+      opacity: .68;
+      background:
+        radial-gradient(900px 600px at 20% 10%, rgba(124,58,237,.22), transparent 60%),
+        radial-gradient(900px 600px at 80% 30%, rgba(6,182,212,.20), transparent 55%),
+        radial-gradient(900px 600px at 55% 92%, rgba(34,197,94,.14), transparent 55%);
+    }
+    :root[data-theme="light"] body::before{
+      opacity: .95;
+      background:
+        radial-gradient(900px 600px at 20% 10%, rgba(109,40,217,.12), transparent 60%),
+        radial-gradient(900px 600px at 80% 30%, rgba(8,145,178,.10), transparent 55%),
+        radial-gradient(900px 600px at 55% 92%, rgba(22,163,74,.08), transparent 55%);
+    }
+    a{ color:inherit; text-decoration:none; }
+    .wrap{ max-width: var(--max); margin:0 auto; padding: 0 16px; }
 
-    /* Layout */
-    .wrap{ max-width:1100px; margin:auto; padding:24px; }
+    .skip{
+      position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden;
+    }
+    .skip:focus{
+      left:16px; top:12px; width:auto; height:auto;
+      padding:10px 12px; border-radius: 12px;
+      background: var(--panel2); border:1px solid var(--line);
+      z-index: 9999;
+    }
+    a:focus-visible, button:focus-visible{
+      outline: 3px solid rgba(6,182,212,.85);
+      outline-offset: 3px;
+      border-radius: 14px;
+    }
+    :root[data-theme="light"] a:focus-visible,
+    :root[data-theme="light"] button:focus-visible{
+      outline-color: rgba(109,40,217,.75);
+    }
 
-    /* Header / Nav */
     header{
-      position:sticky;
-      top:0;
-      z-index:50;
-      background:rgba(13,17,28,.88);
-      backdrop-filter:saturate(180%) blur(10px);
-      border-bottom:1px solid var(--border);
+      position: sticky; top:0; z-index:50;
+      background: rgba(7,10,18,.86);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255,255,255,.08);
     }
+    :root[data-theme="light"] header{
+      background: rgba(246,247,251,.82);
+      border-bottom: 1px solid rgba(0,0,0,.08);
+    }
+
     .nav{
-      max-width:1100px;
-      margin:auto;
-      padding:14px 24px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
+      display:flex; align-items:center; justify-content:space-between;
+      gap:12px; padding: 12px 0;
     }
     .brand{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      font-weight:800;
-      letter-spacing:.2px;
-      text-decoration:none;
-      white-space:nowrap;
+      display:flex; align-items:center; gap:10px;
+      font-weight: 850; letter-spacing:-.02em;
     }
-    .brand-badge{
-      width:34px; height:34px;
-      border-radius:10px;
-      background:linear-gradient(135deg,var(--primary),#4f46e5);
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
+    .dot{
+      width:12px; height:12px; border-radius:999px;
+      background: conic-gradient(from 180deg, var(--a), var(--b), var(--c), var(--a));
+      box-shadow: 0 0 0 6px rgba(255,255,255,.04);
+      flex: 0 0 auto;
+    }
+    :root[data-theme="light"] .dot{ box-shadow: 0 0 0 6px rgba(0,0,0,.04); }
+
+    .menuBtn{
+      border:1px solid var(--line);
+      background: var(--panel);
+      color: var(--text);
+      border-radius: 14px;
+      padding:10px 12px;
+      font-weight: 800;
+      cursor:pointer;
+      white-space: nowrap;
+    }
+    .navBtns{ display:flex; gap:10px; align-items:center; }
+
+    nav.links{
+      display:none;
+      flex-direction:column;
+      gap:6px;
+      padding: 10px 0 14px;
+    }
+    nav.links a{
+      padding: 10px 12px;
+      border-radius: 14px;
+      border:1px solid var(--line);
+      background: var(--panel);
+      color: var(--muted);
+    }
+    .navOpen nav.links{ display:flex; }
+
+    @media (min-width: 860px){
+      #menuBtn{ display:none; }
+      nav.links{
+        display:flex !important;
+        flex-direction:row;
+        padding: 0;
+        gap:10px;
+      }
+      nav.links a{
+        border:1px solid transparent;
+        background: transparent;
+        padding: 8px 10px;
+      }
+      nav.links a:hover{
+        border-color: var(--line);
+        background: var(--panel);
+        color: var(--text);
+      }
+    }
+
+    .card{
+      border:1px solid var(--line);
+      background: linear-gradient(135deg, var(--panel2), var(--panel));
+      border-radius: var(--r);
       box-shadow: var(--shadow);
-      font-weight:900;
     }
-    nav[aria-label] .links{
-      display:flex;
-      align-items:center;
-      gap:18px;
-      flex-wrap:wrap;
-      justify-content:flex-end;
-    }
-    .links a{
-      text-decoration:none;
-      color:var(--muted);
-      font-size:15px;
-      padding:8px 10px;
-      border-radius:10px;
-      transition: .15s ease;
-    }
-    .links a:hover{ color:#fff; background:rgba(255,255,255,.06); }
-    .links a.active{ color:#fff; background:rgba(124,58,237,.18); border:1px solid rgba(124,58,237,.35); }
-
-    .nav-cta{
-      display:flex;
-      gap:10px;
-      align-items:center;
-      flex-wrap:wrap;
-      justify-content:flex-end;
+    .tile, .row, .mini, .faqItem{
+      border:1px solid var(--line);
+      background: var(--panel);
+      border-radius: 16px;
     }
 
-    /* Buttons */
     .btn{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      padding:12px 14px;
-      border-radius:12px;
-      text-decoration:none;
-      font-weight:800;
-      border:1px solid transparent;
-      box-shadow: 0 8px 24px rgba(0,0,0,.25);
-      transition: transform .12s ease, filter .12s ease;
-      white-space:nowrap;
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      border:1px solid var(--line);
+      background: var(--panel);
+      color:var(--text);
+      border-radius: 16px;
+      padding: 12px 14px;
+      font-weight: 850;
+      cursor:pointer;
+      min-height: 48px;
     }
-    .btn:hover{ transform: translateY(-1px); filter: brightness(1.05); }
-    .btn-primary{ background:var(--primary); color:#fff; }
-    .btn-accent{ background:var(--accent); color:#03131a; }
-    .btn-ghost{ background:rgba(255,255,255,.06); color:#fff; border-color:rgba(255,255,255,.12); box-shadow:none; }
+    .btn.primary{
+      background: linear-gradient(135deg, rgba(124,58,237,.80), rgba(6,182,212,.55));
+      border-color: rgba(255,255,255,.18);
+    }
+    :root[data-theme="light"] .btn.primary{ border-color: rgba(0,0,0,.10); }
 
-    /* Hero */
+    main{ padding: 18px 0 70px; }
+
+    .sectionPad{ padding: 16px; }
+    .sectionTitle{ margin:0 0 6px; letter-spacing:-.02em; }
+    .sectionLead{ margin:0; color: var(--muted); line-height:1.6; }
+    .prose{ color: var(--muted); line-height:1.65; }
+    .prose strong{ color: var(--text); }
+
     .hero{
-      padding:28px 0 8px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:12px;
     }
+    .heroLeft{ padding: 18px; }
+    .kicker{
+      display:inline-flex; align-items:center; gap:8px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(0,0,0,.20);
+      color: var(--muted);
+      font-size: 13px;
+    }
+    :root[data-theme="light"] .kicker{
+      background: rgba(255,255,255,.75);
+      border-color: rgba(0,0,0,.10);
+    }
+
     h1{
-      font-size: clamp(30px, 4vw, 44px);
-      line-height:1.15;
-      margin:0 0 10px 0;
-      letter-spacing:-.6px;
+      margin: 14px 0 10px;
+      font-size: clamp(28px, 8vw, 44px);
+      line-height: 1.08;
+      letter-spacing: -.03em;
     }
+    .grad{
+      background: linear-gradient(90deg, #fff, rgba(255,255,255,.88), #a5b4fc, #67e8f9, #86efac);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color: transparent;
+    }
+    :root[data-theme="light"] .grad{
+      background: linear-gradient(90deg, rgba(10,12,18,.95), rgba(10,12,18,.85), #4f46e5, #0891b2, #16a34a);
+      -webkit-background-clip:text;
+      background-clip:text;
+      color: transparent;
+    }
+
     .lead{
-      font-size:18px;
-      color:var(--muted);
-      margin:0 0 18px 0;
+      margin:0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.65;
       max-width: 70ch;
     }
-    .cta-row{ display:flex; gap:12px; flex-wrap:wrap; margin:18px 0 6px; }
-
-    /* Sections */
-    .card{
-      background:rgba(255,255,255,.03);
-      border:1px solid rgba(255,255,255,.08);
-      border-radius:18px;
-      padding:18px;
-      box-shadow: var(--shadow);
+    .cta{
+      margin-top: 14px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:10px;
     }
-    h2{ margin:0 0 10px 0; font-size:24px; letter-spacing:-.2px; }
-    h3{ margin:18px 0 6px 0; font-size:18px; }
-    .muted{ color:var(--muted2); }
 
-    hr{
-      border:none;
-      border-top:1px solid var(--border);
-      margin:26px 0;
-    }
-    ul{ margin:10px 0 0 18px; color:var(--muted); }
-    li{ margin:6px 0; }
+    .heroRight{ padding: 16px; display:grid; gap:10px; }
+    .mini{ padding: 12px; }
+    .mini .t{ font-size:12px; color: rgba(255,255,255,.65); }
+    :root[data-theme="light"] .mini .t{ color: rgba(10,12,18,.62); }
+    .mini .v{ margin-top:6px; font-weight: 900; letter-spacing:-.02em; }
 
-    /* Footer */
-    footer{
-      border-top:1px solid var(--border);
-      margin-top:34px;
-      padding:22px 0;
-      color:#888;
-      font-size:14px;
+    @media (min-width: 980px){
+      .hero{ grid-template-columns: 1.15fr .85fr; gap:18px; }
+      .heroLeft{ padding: 26px; }
+      .heroRight{ padding: 18px; }
+      .cta{ grid-template-columns: auto auto; justify-content:flex-start; }
+      .cta .btn{ width:auto; }
     }
-    .footer-grid{
+
+    section{ margin-top: 14px; }
+
+    .grid{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:10px;
+      margin-top: 10px;
+    }
+    @media (min-width: 720px){ .grid{ grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 1020px){ .grid{ grid-template-columns: 1fr 1fr 1fr; } }
+
+    .tile{ padding: 14px; }
+    .tile h3{ margin: 8px 0 6px; font-size: 15px; }
+    .tile p{ margin:0; color: var(--muted); font-size: 13.5px; line-height:1.6; }
+
+    .split{
+      display:grid;
+      grid-template-columns: 1fr;
+      gap:12px;
+    }
+    @media (min-width: 980px){ .split{ grid-template-columns: 1fr 1fr; } }
+
+    .row{
       display:flex;
-      gap:16px;
-      justify-content:space-between;
-      flex-wrap:wrap;
-      align-items:center;
+      flex-direction:column;
+      gap:6px;
+      padding: 12px;
     }
+    .row strong{ font-size:14px; }
+    .row span{ color: var(--muted); font-size: 13px; }
 
-    /* Mobile */
-    @media (max-width: 780px){
-      .nav{ padding:12px 16px; }
-      .wrap{ padding:18px 16px; }
-      nav[aria-label] .links{ gap:8px; }
-      .links a{ padding:8px 8px; }
-      .brand-text{ display:none; } /* optionnel: réduit la largeur */
+    .faq{
+      display:grid;
+      gap:10px;
+      margin-top: 10px;
+    }
+    .faqItem{ padding: 12px; }
+    .faqItem summary{
+      cursor:pointer;
+      font-weight: 900;
+      list-style: none;
+      outline: none;
+    }
+    .faqItem summary::-webkit-details-marker{ display:none; }
+    .faqItem p{ margin:10px 0 0; color: var(--muted); line-height:1.65; }
+
+    footer{
+      margin-top: 18px;
+      color: rgba(255,255,255,.62);
+      font-size: 12.5px;
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+      padding: 0 16px;
+    }
+    :root[data-theme="light"] footer{ color: rgba(10,12,18,.60); }
+    @media (min-width: 860px){
+      footer{ flex-direction:row; justify-content:space-between; }
     }
   </style>
 </head>
 
 <body>
+  <a class="skip" href="#main">Aller au contenu principal</a>
 
-  <!-- ===== NAVIGATION (menu manquant) ===== -->
   <header>
-    <div class="nav">
-      <a class="brand" href="/" aria-label="Accueil JC Gagnon Informatique">
-        <span class="brand-badge">JC</span>
-        <span class="brand-text">JC Gagnon Informatique</span>
-      </a>
+    <div class="wrap">
+      <div class="nav" id="nav">
+        <a class="brand" href="#top" aria-label="JC Gagnon Informatique (haut de page)">
+          <span class="dot" aria-hidden="true"></span>
+          <span>JC Gagnon Informatique</span>
+        </a>
 
-      <nav aria-label="Navigation principale">
-        <div class="links">
-          <a href="/" >Accueil</a>
-          <a href="/services.html">Services</a>
-          <a class="active" href="/reparation-ordinateur-montreal.html">Réparation</a>
-          <a href="/#contact">Contact</a>
+        <div class="navBtns">
+          <button class="menuBtn" id="menuBtn" type="button" aria-expanded="false" aria-controls="links">
+            Menu ☰
+          </button>
+
+          <button class="menuBtn" id="themeBtn" type="button" aria-label="Basculer le thème">
+            🌙
+          </button>
         </div>
-      </nav>
 
-      <div class="nav-cta">
-        <a class="btn btn-ghost" href="tel:+15148340083">📞 (514) 834-0083</a>
-        <a class="btn btn-accent" href="/#contact">📩 Soumission</a>
+        <!-- ✅ Ajout du lien vers Joliette dans la navigation -->
+        <nav class="links" id="links" aria-label="Navigation">
+          <a href="/a-propos.html">À propos</a>
+          <a href="#services">Services</a>
+          <a href="/reparation-optimisation.html">Réparation & optimisation</a>
+          <a href="/reparation-ordinateur-montreal.html">Réparation Montréal</a>
+          <a href="/reparation-ordinateur-joliette.html">Réparation Joliette</a>
+          <a href="#zones">Zones</a>
+          <a href="#tarifs">Tarifs</a>
+          <a href="#contact">Contact</a>
+        </nav>
       </div>
     </div>
   </header>
 
-  <main class="wrap">
+  <main id="main">
+    <div class="wrap" id="top">
 
-    <section class="hero">
-      <h1>Réparation ordinateur à Montréal</h1>
+      <section class="hero" aria-label="Présentation">
+        <div class="card heroLeft">
+          <div class="kicker">⚡ Simple • Fiable • Efficace — Réparation d’ordinateur & support TI</div>
 
-      <p class="lead">
-        Service professionnel de <strong>réparation ordinateur à Montréal</strong> pour particuliers, travailleurs autonomes et PME.
-        Diagnostic clair, solution durable, explication simple.
-      </p>
+          <h1><span class="grad">Réparation d’ordinateur à Montréal & Joliette</span><br/>pour particuliers et PME.</h1>
 
-      <div class="cta-row">
-        <a class="btn btn-primary" href="tel:+15148340083">📞 Appeler (514) 834-0083</a>
-        <a class="btn btn-accent" href="/#contact">📩 Demander une soumission</a>
-      </div>
+          <p class="lead">
+            Dépannage PC/Windows, optimisation, suppression de virus, sécurité, sauvegardes et réseaux — sur place ou à distance.
+            Diagnostic clair, solution durable, explication simple.
+          </p>
 
-      <p class="muted" style="margin:10px 0 0;">
-        Sur place ou à distance • Montréal et environs
-      </p>
-    </section>
+          <div class="cta" role="group" aria-label="Actions rapides">
+            <a class="btn primary" href="tel:+15148340083" aria-label="Appeler JC Gagnon Informatique au 514 834 0083">📞 Appeler (514) 834-0083</a>
+            <a class="btn" href="#contact">📩 Demander une soumission</a>
+          </div>
+        </div>
 
-    <hr>
+        <div class="card heroRight" aria-label="Points forts">
+          <div class="mini">
+            <div class="t">Intervention</div>
+            <div class="v">Sur place ou à distance</div>
+          </div>
+          <div class="mini">
+            <div class="t">Spécialités</div>
+            <div class="v">Windows • Sécurité • Réseaux • Sites web</div>
+          </div>
+          <div class="mini">
+            <div class="t">Objectif</div>
+            <div class="v">Stabilité + performance + prévention</div>
+          </div>
+        </div>
+      </section>
 
-    <section class="card" id="services">
-      <h2>Services de réparation ordinateur à Montréal</h2>
-      <ul>
-        <li>Ordinateur lent ou instable</li>
-        <li>Écran bleu (BSOD)</li>
-        <li>Réinstallation Windows</li>
-        <li>Suppression de virus et logiciels malveillants</li>
-        <li>Mise à niveau SSD ou RAM</li>
-        <li>Récupération de données</li>
-        <li>Problèmes réseau et Wi-Fi</li>
-      </ul>
-    </section>
+      <!-- ===== Services (contenu enrichi + liens internes) ===== -->
+      <section id="services" class="card" aria-label="Services">
+        <div class="sectionPad">
+          <h2 class="sectionTitle">Services</h2>
+          <p class="sectionLead">
+            Une seule place pour vos besoins essentiels : réparation d’ordinateur, optimisation, sécurité, réseaux et web.
+          </p>
 
-    <hr>
+          <div class="grid" role="list" aria-label="Aperçu des services">
+            <a href="/reparation-ordinateur-montreal.html" class="tile" role="listitem" style="display:block;">
+              <h3>🛠️ Réparation d’ordinateur à Montréal</h3>
+              <p>PC lent, instable, écran bleu, réinstallation Windows, mise à niveau SSD/RAM, optimisation performance.</p>
+            </a>
 
-    <section class="card">
-      <h2>Dépannage PC et optimisation Windows</h2>
-      <p>
-        Un ordinateur lent n’est pas normal. La plupart des problèmes proviennent
-        d’une mauvaise configuration, d’un disque dur vieillissant ou d’un excès de logiciels.
-        Une optimisation professionnelle peut souvent améliorer fortement la performance.
-      </p>
+            <!-- ✅ Nouveau lien vers la page Joliette -->
+            <a href="/reparation-ordinateur-joliette.html" class="tile" role="listitem" style="display:block;">
+              <h3>🧰 Réparation d’ordinateur à Joliette</h3>
+              <p>PC lent, virus, Windows instable, récupération de données, mise à niveau SSD/RAM — sur place ou à distance.</p>
+            </a>
 
-      <p>
-        Chaque intervention commence par un diagnostic précis.
-        Vous comprenez ce qui cause le problème avant d’autoriser la réparation.
-      </p>
-    </section>
+            <a href="/reparation-optimisation.html" class="tile" role="listitem" style="display:block;">
+              <h3>⚙️ Optimisation & mises à niveau</h3>
+              <p>Démarrage plus rapide, nettoyage logiciel, drivers, SSD/RAM, correctifs et réglages durables.</p>
+            </a>
 
-    <hr>
+            <a href="#securite" class="tile" role="listitem" style="display:block;">
+              <h3>🛡️ Sécurité & sauvegardes</h3>
+              <p>Suppression de virus, MFA, durcissement, sauvegarde automatique, récupération — réduction du risque pour vrai.</p>
+            </a>
+          </div>
 
-    <section class="card">
-      <h2>Pourquoi choisir JC Gagnon Informatique à Montréal&nbsp;?</h2>
-      <ul>
-        <li>Intervention sur place ou à distance</li>
-        <li>Tarification transparente</li>
-        <li>Approche pédagogique</li>
-        <li>Solutions durables (pas de correctifs temporaires)</li>
-        <li>Prévention et sécurité intégrées</li>
-      </ul>
-    </section>
+          <div class="grid" style="margin-top:10px;" role="list" aria-label="Détails des services">
+            <div class="tile" role="listitem" aria-label="Dépannage PC/Windows">
+              <h3>Dépannage PC/Windows</h3>
+              <p class="prose">
+                Si votre ordinateur est lent, plante, affiche un écran bleu ou refuse de se mettre à jour, on commence par un
+                <strong>diagnostic clair</strong> (symptômes, journaux, état disque, pilotes, démarrage). Ensuite, on applique des correctifs
+                qui visent la <strong>stabilité</strong> et la <strong>performance</strong>.
+              </p>
+            </div>
 
-    <hr>
+            <div class="tile" role="listitem" id="securite" aria-label="Sécurité et sauvegardes">
+              <h3>Sécurité & sauvegardes</h3>
+              <p class="prose">
+                Virus, logiciels indésirables, comptes compromis : on nettoie, on sécurise, puis on met en place une
+                <strong>prévention simple</strong> (MFA, durcissement, mise à jour, bonnes pratiques). Côté données, on peut configurer une
+                <strong>sauvegarde automatique</strong> et tester la récupération.
+              </p>
+            </div>
 
-    <section class="card" id="faq">
-      <h2>FAQ – Réparation ordinateur Montréal</h2>
+            <div class="tile" role="listitem" aria-label="Réseaux, Wi-Fi et web">
+              <h3>Réseaux, Wi-Fi & site web</h3>
+              <p class="prose">
+                Un Wi-Fi instable ou lent peut ruiner une journée. On optimise la configuration (placement, canaux, sécurité)
+                pour une connexion plus fiable. Besoin d’un <strong>site vitrine rapide</strong>? Domaine, SSL et mise en ligne inclus.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
 
-      <h3>Combien coûte une réparation ordinateur&nbsp;?</h3>
-      <p>Le diagnostic débute à 30&nbsp;$. Le coût total dépend du problème et des pièces nécessaires.</p>
+      <!-- ===== Local SEO: Zones desservies + contenu local ===== -->
+      <section id="zones" class="card" aria-label="Zones desservies">
+        <div class="sectionPad">
+          <h2 class="sectionTitle">Zones desservies</h2>
+          <p class="sectionLead">
+            Réparation d’ordinateur à <strong>Montréal</strong> et dans la <strong>région de Joliette</strong>.
+            Assistance à distance disponible partout au Québec.
+          </p>
 
-      <h3>Offrez-vous le service à domicile à Montréal&nbsp;?</h3>
-      <p>Oui, selon le secteur et le type d’intervention. Assistance à distance disponible rapidement.</p>
+          <div class="grid" role="list" aria-label="Villes desservies">
+            <div class="tile" role="listitem">
+              <h3>Montréal</h3>
+              <p>Réparation d’ordinateur, dépannage PC/Windows, optimisation, sécurité et réseaux pour particuliers et PME.</p>
+            </div>
 
-      <h3>Réparez-vous tous les types d’ordinateurs&nbsp;?</h3>
-      <p>PC Windows principalement. Certains services Mac selon le cas.</p>
-    </section>
+            <!-- ✅ Zone Joliette rendue cliquable -->
+            <a class="tile" role="listitem" href="/reparation-ordinateur-joliette.html" style="display:block;">
+              <h3>Joliette et environs</h3>
+              <p>Réparation d’ordinateur, nettoyage/virus, mise à niveau SSD/RAM, Wi-Fi, sauvegardes et prévention.</p>
+            </a>
 
-    <hr>
+            <div class="tile" role="listitem">
+              <h3>À distance</h3>
+              <p>Assistance rapide : diagnostics, correctifs Windows, performance, configuration et conseils sécurité.</p>
+            </div>
+          </div>
 
-    <section class="card" id="contact">
-      <h2>Contact – Réparation ordinateur Montréal</h2>
+          <div class="tile" style="margin-top:10px;">
+            <h3 style="margin:0 0 6px;">Sur place ou à distance : comment ça se passe?</h3>
+            <p class="prose" style="margin:0;">
+              Pour plusieurs problèmes (lenteur, mises à jour, configuration, sécurité), l’assistance à distance est rapide.
+              Pour le matériel (SSD/RAM, problèmes physiques), une intervention sur place est préférable.
+              <strong>Diagnostic → solution → explication → prévention.</strong>
+            </p>
+          </div>
+        </div>
+      </section>
 
-      <p>
-        📍 Service offert à Montréal et environs<br>
-        📞 <a href="tel:+15148340083">(514) 834-0083</a><br>
-        ✉️ <a href="mailto:jcgagnon@outlook.com">jcgagnon@outlook.com</a>
-      </p>
-    </section>
+      <!-- ===== FAQ (rich results) ===== -->
+      <section id="faq" class="card" aria-label="Questions fréquentes">
+        <div class="sectionPad">
+          <h2 class="sectionTitle">Questions fréquentes</h2>
+          <p class="sectionLead">Réponses rapides sur la réparation d’ordinateur, l’assistance à distance et les interventions.</p>
 
-    <footer>
-      <div class="footer-grid">
-        <div>© 2026 JC Gagnon Informatique – Réparation ordinateur Montréal</div>
-        <div class="muted">Windows • Réseau • Sécurité • Optimisation</div>
-      </div>
-    </footer>
+          <div class="faq" role="list">
+            <details class="faqItem" role="listitem">
+              <summary>Est-ce que vous vous déplacez à Montréal et à Joliette?</summary>
+              <p>Oui. Sur place à Montréal et dans la région de Joliette, ou à distance selon la nature du problème.</p>
+            </details>
 
+            <details class="faqItem" role="listitem">
+              <summary>Est-ce que l’assistance à distance est sécuritaire?</summary>
+              <p>Oui, si c’est fait correctement : session ponctuelle, consentement, et fermeture à la fin. On garde ça simple et contrôlé.</p>
+            </details>
+
+            <details class="faqItem" role="listitem">
+              <summary>Où trouver vos services pour Joliette?</summary>
+              <p>Vous pouvez consulter la page <a href="/reparation-ordinateur-joliette.html" style="text-decoration:underline;">Réparation ordinateur Joliette</a> pour les cas fréquents et les options sur place ou à distance.</p>
+            </details>
+
+            <details class="faqItem" role="listitem">
+              <summary>Que faire avant de demander une réparation?</summary>
+              <p>Si possible : notez les symptômes, les messages d’erreur, et si ça a commencé après une mise à jour ou un nouveau logiciel. Ça accélère le diagnostic.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section class="split" aria-label="Tarifs et contact">
+        <div class="card" id="tarifs" aria-label="Tarifs">
+          <div class="sectionPad">
+            <h2 class="sectionTitle">Tarifs</h2>
+            <p class="sectionLead">Repères transparents (selon le cas).</p>
+
+            <div class="row">
+              <strong>Diagnostic</strong>
+              <span>30 $</span>
+            </div>
+            <div class="row" style="margin-top:10px;">
+              <strong>Suppression de virus / indésirables</strong>
+              <span>50 $</span>
+            </div>
+            <div class="row" style="margin-top:10px;">
+              <strong>Assistance à distance</strong>
+              <span>40 $ / h</span>
+            </div>
+
+            <div class="tile" style="margin-top:10px;">
+              <h3 style="margin:0 0 6px;">Conseil simple</h3>
+              <p class="prose" style="margin:0;">
+                Si vos données sont importantes, on peut planifier une <strong>sauvegarde automatique</strong> après la réparation.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" id="contact" aria-label="Contact">
+          <div class="sectionPad">
+            <h2 class="sectionTitle">Contact</h2>
+            <p class="sectionLead">
+              Le plus simple : un appel. Sinon, un message et on planifie.
+            </p>
+
+            <div class="row">
+              <strong>Téléphone</strong>
+              <span><a href="tel:+15148340083" aria-label="Téléphoner au 514 834 0083">(514) 834-0083</a></span>
+            </div>
+
+            <div class="row" style="margin-top:10px;">
+              <strong>Courriel</strong>
+              <span><a id="mailLink" href="mailto:jcgagnon@outlook.com" aria-label="Envoyer un courriel à JC Gagnon Informatique">jcgagnon@outlook.com</a></span>
+            </div>
+
+            <div class="row" style="margin-top:10px;">
+              <strong>Zone</strong>
+              <span>Montréal & région de Joliette (QC) — sur place ou à distance</span>
+            </div>
+
+            <div class="cta" style="margin-top:12px;">
+              <button class="btn" id="copyBtn" type="button">📋 Copier mes infos</button>
+              <button class="btn primary" id="shareBtn" type="button">📣 Partager</button>
+            </div>
+
+            <noscript>
+              <div class="tile" style="margin-top:10px;">
+                <h3 style="margin:0 0 6px;">Note</h3>
+                <p class="prose" style="margin:0;">
+                  JavaScript est désactivé : certains boutons (copie/partage) ne fonctionneront pas, mais l’appel et le courriel restent disponibles.
+                </p>
+              </div>
+            </noscript>
+
+            <div style="margin-top:10px; color: rgba(255,255,255,.55); font-size:12.5px;">
+              v2026-02-28-JOLIETTE-LINK
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        <span>© <span id="year"></span> JC Gagnon Informatique</span>
+        <span>Propulsé par GitHub Pages</span>
+      </footer>
+    </div>
   </main>
 
+  <script>
+    // Year
+    (function(){
+      const yearEl = document.getElementById("year");
+      if (yearEl) yearEl.textContent = new Date().getFullYear();
+    })();
+
+    // ===== Mobile menu toggle (robuste + a11y, SANS hidden) =====
+    (function(){
+      const nav = document.getElementById("nav");
+      const menuBtn = document.getElementById("menuBtn");
+      const links = document.getElementById("links");
+      if (!nav || !menuBtn || !links) return;
+
+      const firstLink = links.querySelector("a");
+      const mqDesktop = window.matchMedia("(min-width: 860px)");
+
+      function setMenu(open){
+        nav.classList.toggle("navOpen", open);
+        menuBtn.setAttribute("aria-expanded", open ? "true" : "false");
+        links.setAttribute("aria-hidden", open ? "false" : "true");
+        if(!mqDesktop.matches){
+          if(open) firstLink?.focus();
+          else menuBtn.focus();
+        }
+      }
+
+      links.setAttribute("aria-hidden", "true");
+
+      menuBtn.addEventListener("click", () => {
+        const open = !nav.classList.contains("navOpen");
+        setMenu(open);
+      });
+
+      links.addEventListener("click", (e) => {
+        const a = e.target.closest("a");
+        if (!a) return;
+        if (mqDesktop.matches) return;
+        setMenu(false);
+      });
+
+      document.addEventListener("click", (e) => {
+        if (mqDesktop.matches) return;
+        if (!nav.classList.contains("navOpen")) return;
+        if (nav.contains(e.target)) return;
+        setMenu(false);
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && nav.classList.contains("navOpen") && !mqDesktop.matches) setMenu(false);
+      });
+
+      function syncOnResize(){
+        if (mqDesktop.matches) setMenu(false);
+      }
+      mqDesktop.addEventListener?.("change", syncOnResize);
+      window.addEventListener("resize", syncOnResize);
+    })();
+
+    // ===== Toggle thème (sombre/clair) =====
+    (function(){
+      const btn = document.getElementById("themeBtn");
+      if(!btn) return;
+
+      function applyTheme(theme){
+        document.documentElement.setAttribute("data-theme", theme);
+        document.documentElement.style.colorScheme = theme;
+        localStorage.setItem("theme", theme);
+
+        const themeColor = document.querySelector('meta[name="theme-color"]');
+        if (themeColor) themeColor.setAttribute("content", theme === "light" ? "#F6F7FB" : "#070A12");
+
+        btn.textContent = theme === "light" ? "☀️" : "🌙";
+      }
+
+      const current = document.documentElement.getAttribute("data-theme") || "dark";
+      btn.textContent = current === "light" ? "☀️" : "🌙";
+
+      btn.addEventListener("click", () => {
+        const now = document.documentElement.getAttribute("data-theme") === "light" ? "light" : "dark";
+        applyTheme(now === "light" ? "dark" : "light");
+      });
+    })();
+
+    // ===== Courriel: tenter Outlook puis fallback mailto =====
+    (function(){
+      const EMAIL = "jcgagnon@outlook.com";
+      const SUBJECT = "Demande d’aide — réparation d’ordinateur";
+      const BODY =
+`Bonjour JC,
+
+J’aimerais de l’aide pour une réparation d’ordinateur :
+- (décris brièvement le problème)
+
+Détails utiles :
+- Appareil / OS :
+- Urgence :
+- Sur place (Montréal/Joliette) ou à distance :
+- Disponibilités :
+
+Merci!`;
+
+      const mailLink = document.getElementById("mailLink");
+      if (!mailLink) return;
+
+      const mailtoHref =
+        `mailto:${encodeURIComponent(EMAIL)}?subject=${encodeURIComponent(SUBJECT)}&body=${encodeURIComponent(BODY)}`;
+
+      const outlookHref =
+        `ms-outlook://compose?to=${encodeURIComponent(EMAIL)}&subject=${encodeURIComponent(SUBJECT)}&body=${encodeURIComponent(BODY)}`;
+
+      mailLink.href = mailtoHref;
+
+      mailLink.addEventListener("click", (e) => {
+        e.preventDefault();
+        window.location.href = outlookHref;
+        setTimeout(() => {
+          window.location.href = mailtoHref;
+        }, 450);
+      });
+    })();
+
+    // ===== Copy + Share =====
+    (function(){
+      const copyBtn = document.getElementById("copyBtn");
+      const shareBtn = document.getElementById("shareBtn");
+      if (!copyBtn || !shareBtn) return;
+
+      const EMAIL = "jcgagnon@outlook.com";
+      const info =
+`JC Gagnon Informatique
+Téléphone: (514) 834-0083
+Site: ${location.origin}
+Courriel: ${EMAIL}
+Zones: Montréal & région de Joliette (QC)
+Page Joliette: ${location.origin}/reparation-ordinateur-joliette.html`;
+
+      async function copyText(text){
+        try{
+          await navigator.clipboard.writeText(text);
+          alert("Copié ✅");
+        }catch(e){
+          const ta = document.createElement("textarea");
+          ta.value = text;
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand("copy");
+          ta.remove();
+          alert("Copié ✅");
+        }
+      }
+
+      copyBtn.addEventListener("click", ()=>copyText(info));
+
+      shareBtn.addEventListener("click", async ()=>{
+        const url = location.origin;
+        if(navigator.share){
+          try{
+            await navigator.share({ title: document.title, text: "JC Gagnon Informatique — réparation d’ordinateur", url });
+          }catch(e){}
+        }else{
+          copyText("JC Gagnon Informatique — réparation d’ordinateur — " + url);
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
