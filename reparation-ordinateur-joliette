@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="fr-CA">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Réparation ordinateur Joliette | Dépannage PC, virus, performance</title>
+  <meta name="description" content="Réparation d’ordinateur à Joliette : PC lent, Windows instable, virus, récupération de données, mise à niveau SSD/RAM. Diagnostic clair, solution durable." />
+  <meta name="robots" content="index,follow" />
+
+  <link rel="canonical" href="https://www.jcgagnon.ca/reparation-ordinateur-joliette.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Réparation ordinateur Joliette" />
+  <meta property="og:description" content="Dépannage PC à Joliette : diagnostic, réparation, optimisation et sécurité. Sur place (selon le cas) ou à distance." />
+  <meta property="og:url" content="https://www.jcgagnon.ca/reparation-ordinateur-joliette.html" />
+
+  <!-- Données structurées LocalBusiness (NAP cohérent) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "JCGagnon Informatique",
+    "url": "https://www.jcgagnon.ca/",
+    "areaServed": [
+      "Joliette, QC",
+      "Lanaudière, QC"
+    ],
+    "telephone": "+1-514-834-0083",
+    "email": "jcgagnon@outlook.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Joliette",
+      "addressRegion": "QC",
+      "addressCountry": "CA"
+    }
+  }
+  </script>
+
+  <style>
+    :root{
+      --bg:#0b1220;
+      --card:#0f1a30;
+      --muted:#9fb0d0;
+      --text:#e9efff;
+      --brand:#63b3ff;
+      --brand2:#7cf7d4;
+      --border:rgba(255,255,255,.10);
+      --shadow: 0 14px 36px rgba(0,0,0,.35);
+      --radius:18px;
+      --max: 1100px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+    body{
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: radial-gradient(1200px 700px at 20% -10%, rgba(99,179,255,.25), transparent 60%),
+                  radial-gradient(900px 600px at 95% 10%, rgba(124,247,212,.18), transparent 55%),
+                  var(--bg);
+      color:var(--text);
+      line-height:1.55;
+    }
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:var(--max); margin:0 auto; padding: 0 18px;}
+    .topbar{
+      position: sticky; top:0; z-index:50;
+      background: rgba(11,18,32,.75);
+      backdrop-filter: blur(10px);
+      border-bottom:1px solid var(--border);
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      padding: 14px 0;
+      gap:14px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      font-weight:800; letter-spacing:.2px;
+    }
+    .logo{
+      width:34px;height:34px;border-radius:10px;
+      background: linear-gradient(135deg,var(--brand),var(--brand2));
+      box-shadow: 0 10px 20px rgba(99,179,255,.15);
+    }
+    .menu{display:flex; gap:16px; flex-wrap:wrap; align-items:center; justify-content:flex-end}
+    .menu a{color:var(--muted); font-weight:600; font-size:14px}
+    .menu a:hover{color:var(--text)}
+    .cta{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding: 10px 14px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(99,179,255,.95), rgba(124,247,212,.95));
+      color:#071122;
+      font-weight:800;
+      border:0;
+      cursor:pointer;
+      box-shadow: 0 12px 26px rgba(0,0,0,.35);
+    }
+    .cta.secondary{
+      background: transparent;
+      color: var(--text);
+      border:1px solid var(--border);
+      box-shadow:none;
+    }
+    .hero{padding: 56px 0 26px;}
+    .heroGrid{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 22px;
+      align-items: start;
+    }
+    @media (max-width: 900px){ .heroGrid{grid-template-columns: 1fr;} }
+    .pill{
+      display:inline-flex; gap:10px; align-items:center;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.04);
+      color: var(--muted);
+      font-weight:700;
+      font-size:13px;
+      width: fit-content;
+    }
+    h1{
+      margin: 14px 0 10px;
+      font-size: clamp(28px, 3.2vw, 44px);
+      line-height:1.1;
+      letter-spacing:-.6px;
+    }
+    .sub{
+      color: var(--muted);
+      font-size: 16px;
+      max-width: 62ch;
+      margin: 0 0 18px;
+    }
+    .heroActions{display:flex; gap:12px; flex-wrap:wrap; margin-top: 18px}
+    .card{
+      background: rgba(15,26,48,.72);
+      border:1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .heroCard{padding: 18px;}
+    .heroCard h3{margin:0 0 8px; font-size:16px}
+    .list{margin:0; padding:0; list-style:none; display:grid; gap:10px;}
+    .li{
+      display:flex; gap:10px; align-items:flex-start;
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.06);
+      color: var(--muted);
+      font-weight:650;
+      font-size: 14px;
+    }
+    .dot{
+      width:10px;height:10px;border-radius:50%;
+      margin-top: 6px;
+      background: linear-gradient(135deg,var(--brand),var(--brand2));
+      flex:0 0 auto;
+    }
+    section{padding: 18px 0}
+    .sectionTitle{margin:0 0 10px; font-size: 20px; letter-spacing:-.2px;}
+    .grid3{display:grid; grid-template-columns: repeat(3, 1fr); gap: 14px;}
+    @media (max-width: 900px){ .grid3{grid-template-columns: 1fr} }
+    .box{padding: 16px;}
+    .box h4{margin:0 0 6px; font-size:16px}
+    .box p{margin:0; color:var(--muted); font-size:14px}
+    .hr{margin: 18px 0; border:0; border-top:1px solid var(--border);}
+    .steps{display:grid; grid-template-columns: repeat(5, 1fr); gap: 12px;}
+    @media (max-width: 1100px){ .steps{grid-template-columns: 1fr 1fr} }
+    @media (max-width: 600px){ .steps{grid-template-columns: 1fr} }
+    .step{
+      padding: 14px; border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.03);
+    }
+    .step b{display:block; margin-bottom:6px}
+    .step span{color:var(--muted); font-size:14px}
+    .faq details{
+      border:1px solid var(--border);
+      border-radius: 14px;
+      background: rgba(255,255,255,.03);
+      padding: 12px 14px;
+    }
+    .faq details + details{margin-top:10px}
+    .faq summary{
+      cursor:pointer;
+      font-weight:800;
+      color: var(--text);
+      list-style:none;
+    }
+    .faq summary::-webkit-details-marker{display:none}
+    .faq p{margin:10px 0 0; color:var(--muted); font-size:14px}
+    footer{
+      padding: 26px 0 34px;
+      color: var(--muted);
+      border-top:1px solid var(--border);
+      margin-top: 22px;
+    }
+    .contactGrid{display:grid; grid-template-columns: 1fr 1fr; gap: 14px; align-items: stretch;}
+    @media (max-width: 900px){ .contactGrid{grid-template-columns: 1fr} }
+    .contactCard{padding: 16px;}
+    .contactLine{display:flex; gap:10px; align-items:center; color:var(--muted); font-weight:650}
+    .kpi{display:flex; gap:10px; flex-wrap:wrap; margin-top: 12px;}
+    .kpi span{
+      padding: 8px 10px; border-radius: 999px;
+      border:1px solid rgba(255,255,255,.08);
+      background: rgba(255,255,255,.03);
+      color: var(--muted);
+      font-size: 13px; font-weight: 700;
+    }
+    .note{font-size:12px; color: rgba(159,176,208,.9); margin-top:10px}
+  </style>
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="wrap">
+      <nav class="nav" aria-label="Navigation principale">
+        <a class="brand" href="#haut">
+          <span class="logo" aria-hidden="true"></span>
+          <span>JCGagnon • Joliette</span>
+        </a>
+
+        <div class="menu">
+          <a href="#services">Services</a>
+          <a href="#processus">Méthode</a>
+          <a href="#faq">FAQ</a>
+          <a href="#contact" class="cta secondary">Soumission</a>
+          <a class="cta" href="tel:+15148340083">Appeler</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="haut">
+    <section class="hero">
+      <div class="wrap">
+        <div class="heroGrid">
+          <div>
+            <div class="pill">Sur place (selon le cas) • À distance • Joliette, QC</div>
+            <h1>Réparation ordinateur à Joliette</h1>
+            <p class="sub">
+              PC lent, Windows instable, virus, écran noir, Wi-Fi capricieux : on identifie la cause, on corrige proprement,
+              et on te laisse avec une machine <strong>stable, rapide et sécurisée</strong>.
+            </p>
+
+            <div class="heroActions">
+              <a class="cta" href="tel:+15148340083">Appeler : 514 834-0083</a>
+              <a class="cta secondary" href="#contact">Demander une soumission</a>
+            </div>
+
+            <div class="kpi" aria-label="Avantages">
+              <span>Diagnostic expliqué</span>
+              <span>Priorités claires</span>
+              <span>Correctifs durables</span>
+              <span>Hygiène sécurité incluse</span>
+            </div>
+          </div>
+
+          <aside class="card heroCard" aria-label="Problèmes fréquents">
+            <h3>Cas fréquents à Joliette</h3>
+            <ul class="list">
+              <li class="li"><span class="dot"></span><span>Ordinateur très lent / ventilateur toujours à fond</span></li>
+              <li class="li"><span class="dot"></span><span>Windows qui plante, redémarre, écran bleu</span></li>
+              <li class="li"><span class="dot"></span><span>Virus / logiciels indésirables / pubs</span></li>
+              <li class="li"><span class="dot"></span><span>Migration vers SSD, ajout de RAM, nettoyage logiciel</span></li>
+              <li class="li"><span class="dot"></span><span>Récupération de fichiers, sauvegarde, transfert vers nouveau PC</span></li>
+              <li class="li"><span class="dot"></span><span>Problèmes réseau, imprimante, Wi-Fi instable</span></li>
+            </ul>
+            <p class="note">*Indique ton modèle et le symptôme principal : on ira droit au but.</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <div class="wrap"><hr class="hr" /></div>
+
+    <section id="services">
+      <div class="wrap">
+        <h2 class="sectionTitle">Services de dépannage et réparation</h2>
+
+        <div class="grid3">
+          <article class="card box">
+            <h4>Performance & stabilité</h4>
+            <p>Analyse des lenteurs, démarrage, erreurs système, pilotes, services inutiles, santé du disque, surcharge logicielle.</p>
+          </article>
+
+          <article class="card box">
+            <h4>Virus & sécurité de base</h4>
+            <p>Nettoyage, durcissement minimal, mises à jour, MFA (si applicable), conseils anti-phishing et prévention.</p>
+          </article>
+
+          <article class="card box">
+            <h4>Windows : réparation / réinstallation propre</h4>
+            <p>Réparation de Windows, remise à niveau, réinstallation propre avec conservation des données quand possible.</p>
+          </article>
+
+          <article class="card box">
+            <h4>Mise à niveau SSD / RAM</h4>
+            <p>Évaluation coût/bénéfice, clonage vers SSD, tests, optimisation post-migration, stabilité après upgrade.</p>
+          </article>
+
+          <article class="card box">
+            <h4>Données & sauvegardes</h4>
+            <p>Récupération (selon état du disque), stratégie simple 3-2-1, automatisation et test de restauration.</p>
+          </article>
+
+          <article class="card box">
+            <h4>Réseau, Wi-Fi, périphériques</h4>
+            <p>Connexion instable, routeur/mesh, imprimantes, partages, configuration Windows, isolation de la cause.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <div class="wrap"><hr class="hr" /></div>
+
+    <section id="processus">
+      <div class="wrap">
+        <h2 class="sectionTitle">Une méthode simple (et efficace)</h2>
+        <div class="steps" role="list">
+          <div class="step" role="listitem">
+            <b>1) Diagnostic causal</b>
+            <span>On mesure et on vérifie : santé disque, journaux, démarrage, malware, réseau, config.</span>
+          </div>
+          <div class="step" role="listitem">
+            <b>2) Plan d’action</b>
+            <span>Priorités + options. Tu sais quoi faire maintenant vs plus tard, et pourquoi.</span>
+          </div>
+          <div class="step" role="listitem">
+            <b>3) Réparation propre</b>
+            <span>Correctifs durables : on évite les “patchs” temporaires qui reviennent la semaine suivante.</span>
+          </div>
+          <div class="step" role="listitem">
+            <b>4) Vérification</b>
+            <span>Tests concrets : stabilité, mises à jour, performance, sécurité de base, sauvegarde.</span>
+          </div>
+          <div class="step" role="listitem">
+            <b>5) Prévention</b>
+            <span>Quelques recommandations réalistes : entretien, bonnes pratiques, protection et sauvegardes.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="wrap"><hr class="hr" /></div>
+
+    <section id="faq" class="faq">
+      <div class="wrap">
+        <h2 class="sectionTitle">FAQ – Réparation ordinateur Joliette</h2>
+
+        <details>
+          <summary>Combien coûte une réparation d’ordinateur ?</summary>
+          <p>
+            Ça dépend du symptôme, du temps requis et des pièces (si nécessaires). L’approche la plus simple : diagnostic,
+            puis estimation claire avant d’aller plus loin.
+          </p>
+        </details>
+
+        <details>
+          <summary>Est-ce possible à distance ?</summary>
+          <p>
+            Oui, pour plusieurs cas (logiciel, Windows, sécurité, configuration). Pour le matériel (SSD/RAM, alimentation, etc.),
+            une intervention sur place ou dépôt peut être nécessaire.
+          </p>
+        </details>
+
+        <details>
+          <summary>Vous réparez quels types d’ordinateurs ?</summary>
+          <p>
+            Principalement les PC Windows. Certains cas Mac peuvent être possibles selon le besoin et l’environnement.
+          </p>
+        </details>
+
+        <details>
+          <summary>Est-ce que mes données sont en sécurité ?</summary>
+          <p>
+            On privilégie une approche prudente : sauvegarde préalable quand possible, et transparence sur les risques si le disque est en fin de vie.
+          </p>
+        </details>
+      </div>
+    </section>
+
+    <div class="wrap"><hr class="hr" /></div>
+
+    <section id="contact">
+      <div class="wrap">
+        <h2 class="sectionTitle">Contact – Réparation ordinateur à Joliette</h2>
+
+        <div class="contactGrid">
+          <div class="card contactCard">
+            <h3 style="margin:0 0 10px;">Par téléphone / courriel</h3>
+            <div class="contactLine">📞 <a href="tel:+15148340083">514 834-0083</a></div>
+            <div class="contactLine" style="margin-top:8px;">✉️ <a href="mailto:jcgagnon@outlook.com">jcgagnon@outlook.com</a></div>
+            <p class="note">Secteur : Joliette, QC (et environs, au besoin). Ajoute tes heures et tes modalités (sur place / dépôt / à distance) pour améliorer la conversion.</p>
+          </div>
+
+          <div class="card contactCard">
+            <h3 style="margin:0 0 10px;">Demande rapide</h3>
+
+            <form method="post" action="#" onsubmit="return handleLead(event)">
+              <label style="display:block; font-weight:800; margin-bottom:6px;">Nom</label>
+              <input required name="nom" autocomplete="name"
+                style="width:100%; padding:10px 12px; border-radius:12px; border:1px solid var(--border); background:rgba(255,255,255,.03); color:var(--text);"
+              />
+
+              <label style="display:block; font-weight:800; margin:12px 0 6px;">Téléphone ou courriel</label>
+              <input required name="contact" autocomplete="email"
+                style="width:100%; padding:10px 12px; border-radius:12px; border:1px solid var(--border); background:rgba(255,255,255,.03); color:var(--text);"
+              />
+
+              <label style="display:block; font-weight:800; margin:12px 0 6px;">Problème (1–2 phrases)</label>
+              <textarea required name="probleme" rows="4"
+                style="width:100%; padding:10px 12px; border-radius:12px; border:1px solid var(--border); background:rgba(255,255,255,.03); color:var(--text); resize:vertical;"
+              ></textarea>
+
+              <button class="cta" type="submit" style="margin-top:12px; width:100%;">Envoyer</button>
+              <p class="note" id="leadMsg" aria-live="polite"></p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div style="display:flex; flex-wrap:wrap; gap:10px; justify-content:space-between; align-items:center;">
+        <div>© <span id="year"></span> JCGagnon Informatique — Réparation ordinateur Joliette</div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <span>Windows</span> • <span>Réseau</span> • <span>Sécurité</span> • <span>Optimisation</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Démo: branche ce formulaire à un service (Formspree/Netlify) ou à ton backend.
+    function handleLead(e){
+      e.preventDefault();
+      const msg = document.getElementById("leadMsg");
+      msg.textContent = "Merci! Branche ce formulaire à un service (Formspree/Netlify) ou à ton backend pour recevoir les demandes.";
+      return false;
+    }
+  </script>
+</body>
+</html>
